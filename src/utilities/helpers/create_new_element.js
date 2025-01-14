@@ -2,7 +2,9 @@ export function createNewElement({nameTag, className='', idName='', textContent=
     const newElement = document.createElement(nameTag);
     if (className !== '') {
         newElement.classList.add(className);
-    };
+    } else if (Array.isArray(className)) {
+        newElement.classList.add(...className)
+    }
     if (idName !== '') {
         newElement.id = idName;
     };
