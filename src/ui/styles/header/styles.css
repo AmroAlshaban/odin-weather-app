@@ -1,0 +1,57 @@
+header {
+    width: 100%;
+    height: 75px;
+
+    background-color: black;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header * {
+    color: white;
+    font-weight: bolder;
+}
+
+header ::selection {
+    color: gold;
+    background-color: blue;
+}
+
+header > .website-title {
+    cursor: pointer;
+}
+
+header ul {
+    height: 75px;
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: stretch;
+    align-items: center;
+}
+
+header button {
+    background-color: black;
+    padding: 10px;
+
+    height: 75px;
+    width: auto;
+
+    border: 0px;
+
+}
+
+header button:hover {
+    cursor: pointer;
+    background-color: rgb(51, 51, 51);
+    transition: 0.2s;
+}
+
+header button:active {
+    background-color: rgb(82, 82, 82);
+    color: gold;
+    transition: 0s;
+}
