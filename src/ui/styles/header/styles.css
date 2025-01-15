@@ -52,11 +52,15 @@ header button {
 header button:hover {
     cursor: pointer;
     background-color: rgb(51, 51, 51);
+    border-top: 2px solid gold;
+    border-bottom: 2px solid gold;
     transition: 0.2s;
 }
 
 header button:active {
     background-color: rgb(82, 82, 82);
     color: gold;
+    border-top: 5px solid yellow;
+    border-bottom: 5px solid yellow;
     transition: 0s;
 }
