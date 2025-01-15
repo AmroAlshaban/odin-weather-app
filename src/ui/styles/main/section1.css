@@ -1,13 +1,10 @@
-main {
-    padding: 25px;
-    height: 500px;
-}
-
 .section1 {
+    padding: 25px;
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
+    background-color: rgb(180, 180, 180);
 }
 
 .search_bar {

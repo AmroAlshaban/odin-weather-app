@@ -1,0 +1,65 @@
+main nav {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: stretch;
+    align-items: stretch;
+}
+
+main nav ul {
+    width: 100%;
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+main nav li {
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+main nav li button {
+    width: 100%;
+    height: 30px;
+
+    background-color: rgb(234, 234, 234);
+    font-size: 14px;
+    border: 0px;
+    border-radius: 0px;
+}
+
+#today,
+#hourly,
+#forecast {
+    border-top: 2px solid transparent;
+}
+
+#today,
+#hourly {
+    border-right: 1px solid rgb(180, 180, 180);
+    border-bottom: 1px solid rgb(180, 180, 180);
+}
+
+#forecast {
+    border-bottom: 1px solid rgb(180, 180, 180)
+}
+
+#today:hover,
+#hourly:hover,
+#forecast:hover {
+    cursor: pointer;
+    border-bottom: 2px solid black;
+    transition: 0.2s;
+}
+
+#today:active,
+#hourly:active,
+#forecast:active {
+    background-color: rgb(255, 248, 210);
+    transition: 0s;
+}

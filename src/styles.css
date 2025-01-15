@@ -11,5 +11,5 @@ body {
 }
 
 @import url(ui/styles/header/styles.css);
-@import url(ui/styles/main/styles.css);
+@import url(ui/styles/main/imports.css);
 @import url(ui/styles/footer/styles.css);
