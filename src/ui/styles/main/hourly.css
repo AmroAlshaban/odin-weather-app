@@ -6,22 +6,75 @@
 }
 
 .display_hourly_data > div {
-    border-bottom: 1px solid gray;
+    border-bottom: 1px solid rgb(220, 220, 220);
 }
 
 .display_hourly_data > details {
     display: block;
     cursor: pointer;
 }
-
+ 
 .display_hourly_data > details > summary {
+    height: 50px;
     list-style: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: stretch;
+    align-items: stretch;
+    gap: 10px;
 }
 
 .display_hourly_data > details > summary::marker,
 .display_hourly_data > details > summary::-webkit-details-marker {
     display: none;
 }
+
+.display_hourly_data > details > summary > * {
+    border: 1px solid red;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.display_hourly_data > details > summary > .static {
+    aspect-ratio: 1 / 1;
+    height: 50px;
+    width: auto;
+}
+
+/* Styles of Individual Summary Elements */
+/* ----------------------------- */
+/* ----------------------------- */
+/* ----------------------------- */
+/* ----------------------------- */
+
+.display_hourly_data > details > summary > .time > p {
+    color: rgb(99, 99, 99);
+    font-size: 14px;
+}
+
+.display_hourly_data > details > summary > .temperature > p {
+    padding-bottom: 2px;
+    color: black;
+    font-size: 24px;
+    font-family: sans-serif;
+    font-weight: 1000;
+}
+
+.display_hourly_data > details > summary > .temperature-description {
+    flex: 3;
+}
+
+.display_hourly_data > details > summary > .wind-speed {
+    flex: 1;
+}
+
+/* ----------------------------- */
+/* ----------------------------- */
+/* ----------------------------- */
+/* ----------------------------- */
+/* END Styles of Individual Summary Elements */
 
 .display_hourly_data > .title-card {
     padding-bottom: 20px;
