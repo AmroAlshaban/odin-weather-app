@@ -1,0 +1,29 @@
+.display_hourly_data > div,
+.display_hourly_data > details {
+    padding: 10px;
+
+    font-family: sans-serif;
+}
+
+.display_hourly_data > div {
+    border-bottom: 1px solid gray;
+}
+
+.display_hourly_data > details {
+    display: block;
+    cursor: pointer;
+}
+
+.display_hourly_data > details > summary {
+    list-style: none;
+}
+
+.display_hourly_data > details > summary::marker,
+.display_hourly_data > details > summary::-webkit-details-marker {
+    display: none;
+}
+
+.display_hourly_data > .title-card {
+    padding-bottom: 20px;
+}
+
