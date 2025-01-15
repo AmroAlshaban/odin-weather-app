@@ -30,17 +30,20 @@
 }
 
 .display_hourly_data > details > summary > * {
-    border: 1px solid red;
+    /* border: 1px solid red; */
     display: flex;
     flex-direction: row;
-    justify-content: center;
-    align-items: center;
 }
 
 .display_hourly_data > details > summary > .static {
     aspect-ratio: 1 / 1;
     height: 50px;
     width: auto;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
 }
 
 /* Styles of Individual Summary Elements */
@@ -51,23 +54,66 @@
 
 .display_hourly_data > details > summary > .time > p {
     color: rgb(99, 99, 99);
-    font-size: 14px;
+    font-size: 16px;
 }
 
 .display_hourly_data > details > summary > .temperature > p {
     padding-bottom: 2px;
     color: black;
     font-size: 24px;
-    font-family: sans-serif;
     font-weight: 1000;
 }
 
+.display_hourly_data > details > summary > .temperature-icon {
+    background-image: url("../../images/clear-night.svg");
+    background-repeat: no-repeat;
+    background-size: 90%;
+    background-position: center;
+}
+
 .display_hourly_data > details > summary > .temperature-description {
-    flex: 3;
+    flex: 4;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.display_hourly_data > details > summary > .temperature-description > p {
+    font-size: 16px;
+}
+
+.display_hourly_data > details > summary > .rain-icon {
+    background-image: url("../../images/water.png");
+    background-repeat: no-repeat;
+    background-size: 90%;
+    background-position: center;
+}
+
+.display_hourly_data > details > summary > .rain-percentage {
+    font-size: 16px;
+}
+
+.display_hourly_data > details > summary > .wind-icon {
+    background-image: url("../../images/wind-speed.png");
+    background-repeat: no-repeat;
+    background-size: 90%;
+    background-position: center;
 }
 
 .display_hourly_data > details > summary > .wind-speed {
     flex: 1;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.display_hourly_data > details > summary > .details-arrow {
+    background-image: url("../../images/down-arrow.png");
+    background-repeat: no-repeat;
+    background-size: 75%;
+    background-position: center;
 }
 
 /* ----------------------------- */
