@@ -1,8 +1,11 @@
 header {
     width: 100%;
-    height: 75px;
+    height: 50px;
 
     background-color: black;
+
+    position: sticky;
+    top: 0;
 
     display: flex;
     flex-direction: row;
@@ -12,7 +15,7 @@ header {
 
 header * {
     color: white;
-    font-weight: bolder;
+    font-weight: bold;
 }
 
 header ::selection {
@@ -20,12 +23,14 @@ header ::selection {
     background-color: blue;
 }
 
-header > .website-title {
+header > .website-title h2 {
     cursor: pointer;
+    font-weight: 1000;
+    font-family: 'Times New Roman', Times, serif;
 }
 
 header ul {
-    height: 75px;
+    height: 50px;
     list-style: none;
     display: flex;
     flex-direction: row;
@@ -37,11 +42,11 @@ header button {
     background-color: black;
     padding: 10px;
 
-    height: 75px;
+    height: 50px;
     width: auto;
 
+    font-size: 12px;
     border: 0px;
-
 }
 
 header button:hover {
