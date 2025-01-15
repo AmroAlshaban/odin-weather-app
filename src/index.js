@@ -1,3 +1,3 @@
-import "./global_styles.css";
+import "./styles.css";
 
 console.log("Working!")
