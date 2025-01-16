@@ -1,4 +1,4 @@
-export function createNewElement({nameTag, className='', idName='', textContent='', attributes={}} = {}) {
+export function createNewElement({nameTag='div', className='', idName='', textContent='', attributes={}} = {}) {
     const newElement = document.createElement(nameTag);
     if (className !== '') {
         newElement.classList.add(className);
