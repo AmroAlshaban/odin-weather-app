@@ -1,38 +1,174 @@
 import { createNewElement } from "../../utilities/helpers/create_new_element";
+import { toCamelCase } from "../../utilities/helpers/to_camelcase";
 
 
-export function createDisplayHourlyData() {
+export function createDisplayHourlyData({
+    dataLocation,
+    dataDayDate,
+    dataSummary,
+    dataDetails
+}) {
+    const summaryComponentClassNames = [
+        'time', 'temperature', 'temperature-icon', 'temperature-description',
+        'rain-icon', 'rain-percentage', 'wind-icon', 'wind-speed', 'details-arrow',
+    ];
 
+    const summaryComponentStatic = [
+        true, true, true, false, true, true, true, false, true,
+    ];
+
+    const detailsComponentClassNames = [
+        'feels-like', 'wind', 'windgust', 'humidity',
+        'uvindex', 'rainamount', 'moonphase', 'pressure',
+        'cloudcover', 'dew', 'snow', 'solarradiation',
+    ];
+
+    const detailsComponentTitles = [
+        'Feels Like', 'Wind Speed', 'Wind Gust', 'Humidity',
+        'UV Index', 'Rain Amount and Proability', 'Moon Phase', 'Pressure',
+        'Cloud Cover', 'Dew', 'Snow', 'Solar Radiation',
+    ];
+
+    const titleCard = createTitleCard({
+        displayType: 'hourly',
+        location: dataLocation,
+    });
+
+    const dayDate = createDayDate({
+        dayDateText: dataDayDate,
+    });
+
+    const allSummaryComponents = Array.from({ length: 24 }, (_, index) => {
+        const summaryComponents = Array.from({ length: dataSummary.classNames.length }, (_, subIndex) => {
+            const summaryComponent = createDataSummaryComponent({
+                className: dataSummary.classNames[subIndex],
+                isStatic: dataSummary.isStatic[subIndex],
+                isIcon: dataSummary.classNames[subIndex].includes('icon'),
+                text: dataSummary.hour(index)[toCamelCase(dataSummary.classNames[subIndex])],
+            });
+    
+            return summaryComponent;
+        });
+
+        return summaryComponents;
+    });
+
+    const allSummary = Array.from({ length: 24 }, (_, index) => {
+        const summary = createDataSummary(allSummaryComponents[index]);
+
+        return summary;
+    });
+
+    const allH4 = Array.from({ length: 24 }, (_, index) => {
+        const h4 = createH4Element(dataDetails.hour(index).conditions);
+
+        return h4;
+    });
+
+    const allLiComponents = Array.from({ length: 24 }, (_, index) => {
+        const liComponents = Array.from({ length: dataDetails.hour(index).classNames.length }, (_, subIndex) => {
+            const liComponent = createDetailsGridListElement({
+                liClassName: dataDetails.classNames[subIndex],
+                metricTitle: dataDetails.titles[subIndex],
+                metricValue: dataDetails.hour(index)[toCamelCase(dataDetails.classNames[subIndex])],
+            });
+    
+            return liComponent;
+        });
+
+        return liComponents;
+    });
+
+    const allListContainers = Array.from({ length: 24 }, (_, index) => {
+        const listContainer = createDetailsGridListContainer(allLiComponents[index]);
+
+        return listContainer;
+    });
+
+    const allDetails = Array.from({ length: 24 }, (_, index) => {
+        const details = createDetailsGrid(allListContainers[index]);
+
+        return details;
+    });
+
+    const allData = Array.from({ length: 24 }, (_, index) => {
+        const data = createData({
+            summaryElement: allSummary[index], 
+            h4Element: allH4[index], 
+            detailsGrid: allDetails[index],
+            eventListeners: NaN,
+        });
+
+        return data;
+    });
+
+    const displayHourlyData = createNewElement({
+        className: 'display_hourly_data',
+    });
+
+    displayHourlyData.append(titleCard, dayDate, ...allData);
+    return displayHourlyData;
 };
 
 
-export function createTitleCard() {
+export function createTitleCard({displayType, location}) {
+    const displayTypeToTitle = {'today': "Today's", 'hourly': 'Hourly', 'past': 'Past', 'forecast': '15-Day Forecast'};
 
+    const h1Element = createNewElement({
+        nameTag: 'h1',
+        textContent: `${displayTypeToTitle[displayType]} Weather`,
+    });
+
+    const pElement = createNewElement({
+        nameTag: 'p',
+        textContent: location,
+    });
+
+    const titleCard = createNewElement({
+        className: 'title-card',
+    });
+
+    titleCard.append(h1Element, pElement);
+    return titleCard;
 };
 
 
-export function createDayDate() {
+export function createDayDate(dayDateText) {
+    const dayDateContainer = createNewElement({
+        className: 'day-date',
+    });
 
+    const dayDateH2 = createNewElement({
+        nameTag: 'h2',
+        textContent: dayDateText,
+    });
+
+    dayDateContainer.appendChild(dayDateH2);
+    return dayDateContainer;
 };
 
 
-export function createData({summaryElement, h4Element, detailsGrid}) {
+export function createData({summaryElement, h4Element, detailsGrid, eventListeners=NaN}) {
     const details = createNewElement({
         nameTag: 'details',
         className: 'data',
     });
 
     details.append(summaryElement, h4Element, detailsGrid);
+    if (!isNaN(eventListeners)) {
+        eventListeners(details);
+    };
+
     return details;
 };
 
 
-export function createDataSummary(summaryComponents) {
+export function createDataSummary(summaryElements) {
     const summary = createNewElement({
         nameTag: 'summary',
     });
 
-    summary.append(...summaryComponents);
+    summary.append(...summaryElements);
     return summary;
 };
 
@@ -80,21 +216,41 @@ export function createDetailsGrid(listContainer) {
 };
 
 
-export function createDetailsGridListContainer() {
+export function createDetailsGridListContainer(liElements) {
+    const listContainer = createNewElement({
+        nameTag: 'ul',
+    });
 
+    listContainer.append(...liElements);
+    return listContainer;
 };
 
 
-export function createDetailsGridListElement() {
+export function createDetailsGridListElement({liClassName, metricTitle, metricValue}) {
+    const infoIcon = createNewElement({
+        className: 'info-icon',
+    });
 
-};
+    const infoDescriptor = createNewElement({
+        className: 'info-descriptor',
+    });
 
+    const pMetricTitle = createNewElement({
+        nameTag: 'p',
+        textContent: metricTitle,
+    });
 
-export function createInfoIcon() {
+    const pMetricValue = createNewElement({
+        nameTag: 'p',
+        textContent: metricValue,
+    });
 
-};
+    const liElement = createNewElement({
+        nameTag: 'li',
+        className: liClassName,
+    });
 
-
-export function createInfoDescriptor() {
-
+    infoDescriptor.append(pMetricTitle, pMetricValue);
+    liElement.append(infoIcon, infoDescriptor);
+    return liElement;
 };
