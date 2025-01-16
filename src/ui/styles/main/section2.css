@@ -36,13 +36,13 @@ main nav li button {
 #today,
 #hourly,
 #forecast,
-#lastmonth {
+#previousdate {
     border-top: 2px solid transparent;
 }
 
 #today,
 #hourly,
-#lastmonth {
+#previousdate {
     border-right: 1px solid rgb(180, 180, 180);
     border-bottom: 1px solid rgb(180, 180, 180);
 }
@@ -54,7 +54,7 @@ main nav li button {
 #today:hover,
 #hourly:hover,
 #forecast:hover,
-#lastmonth:hover {
+#previousdate:hover {
     cursor: pointer;
     border-bottom: 2px solid black;
     transition: 0.2s;
@@ -63,7 +63,13 @@ main nav li button {
 #today:active,
 #hourly:active,
 #forecast:active,
-#lastmonth:active {
+#previousdate:active {
     background-color: rgb(255, 248, 210);
     transition: 0s;
+}
+
+@media (max-width: 375px) {
+    main nav li button {
+        height: 40px;
+    }
 }

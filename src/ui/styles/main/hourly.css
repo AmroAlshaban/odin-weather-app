@@ -149,7 +149,7 @@
     list-style: none;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(3, 1fr);
+    grid-template-rows: auto;
     row-gap: 5px;
 }
 
@@ -164,9 +164,7 @@
     border-bottom: 1px solid rgb(220, 220, 220);
 }
 
-.display_hourly_data > details > .details-grid li:nth-child(7),
-.display_hourly_data > details > .details-grid li:nth-child(8),
-.display_hourly_data > details > .details-grid li:nth-child(9) {
+.display_hourly_data > details > .details-grid li:nth-last-child(-n+3) {
     border-bottom: 1px solid transparent;
 }
 
@@ -258,6 +256,27 @@
     background-position: top;
 }
 
+.display_hourly_data > details > .details-grid .dew > .info-icon {
+    background-image: url("../../images/dew.png");
+    background-repeat: no-repeat;
+    background-size: 50%;
+    background-position: top;
+}
+
+.display_hourly_data > details > .details-grid .snow > .info-icon {
+    background-image: url("../../images/snow.png");
+    background-repeat: no-repeat;
+    background-size: 50%;
+    background-position: top;
+}
+
+.display_hourly_data > details > .details-grid .solarradiation > .info-icon {
+    background-image: url("../../images/solar-radiation.png");
+    background-repeat: no-repeat;
+    background-size: 50%;
+    background-position: top;
+}
+
 /* ----------------------------- */
 /* ----------------------------- */
 /* ----------------------------- */
@@ -280,6 +299,10 @@
     .display_hourly_data > details > summary > .rain-icon {
         display: none;
     }
+
+    .display_hourly_data > details > .details-grid li > .info-descriptor > p {
+        font-size: 14px !important;
+    }
 }
 
 @media (max-width: 625px) {
@@ -296,8 +319,20 @@
     }
 
     .display_hourly_data > details > .details-grid ul {
-        grid-template-columns: repeat(2, 1fr);
-        grid-template-rows: repeat(5, 1fr);
+        grid-template-columns: 50% 50%;
+        grid-template-rows: auto;
+    }
+
+    .display_hourly_data > details > .details-grid li:nth-last-child(-n+3) {
+        border-bottom: 1px solid rgb(220, 220, 220);
+    }
+
+    .display_hourly_data > details > .details-grid li:nth-last-child(-n+2) {
+        border-bottom: 1px solid transparent;
+    }
+
+    .display_hourly_data > details > .details-grid li > .info-descriptor > p {
+        font-size: 12px !important;
     }
 
     .display_hourly_data > details > summary > .temperature-icon,
@@ -313,14 +348,39 @@
 }
 
 @media (max-width: 375px) {
+    .section3 {
+        padding: 5px;
+    }
+    
     .display_hourly_data > details > summary > .wind-icon,
     .display_hourly_data > details > summary > .rain-icon,
-    .display_hourly_data > details > h4 {
+    .display_hourly_data > details > summary > .rain-percentage {
         display: none;
+    }
+
+    .display_hourly_data > details > summary {
+        
+        justify-content: flex-start;
+    }
+    
+    .display_hourly_data > details > summary > .details-arrow {
+        margin-left: auto;
     }
 
     .display_hourly_data > details > .details-grid ul {
         grid-template-columns: 1fr;
-        grid-template-rows: repeat(9, 1fr);
+        grid-template-rows: auto;
+    }
+
+    .display_hourly_data > details > .details-grid li:nth-last-child(-n+2) {
+        border-bottom: 1px solid rgb(220, 220, 220);
+    }
+
+    .display_hourly_data > details > .details-grid li:nth-last-child(-n+1) {
+        border-bottom: 1px solid transparent;
+    }
+
+    .display_hourly_data > details > .details-grid li > .info-descriptor > p {
+        font-size: 9px !important;
     }
 }

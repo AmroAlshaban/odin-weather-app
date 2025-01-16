@@ -67,3 +67,9 @@
         width: 200px;
     }
 }
+
+@media (max-width: 300px) {
+    #search_bar_write {
+        width: 100px;
+    }
+}

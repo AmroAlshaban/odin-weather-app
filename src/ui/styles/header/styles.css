@@ -1,6 +1,13 @@
+* {
+    --scale-factor-font: 1;
+    --scale-factor-height: 1;
+    --scale-factor-width: 1;
+    --scale-factor-gap: 1;
+}
+
 header {
     width: 100%;
-    height: 50px;
+    height: calc(50px / var(--scale-factor-height));
 
     background-color: black;
 
@@ -23,14 +30,30 @@ header ::selection {
     background-color: blue;
 }
 
+header > .website-title {
+    margin-left: auto;
+    margin-right: auto;
+}
+
 header > .website-title h2 {
     cursor: pointer;
     font-weight: 1000;
     font-family: 'Times New Roman', Times, serif;
+    font-size: calc(1.5em / var(--scale-factor-font));
+}
+
+header nav {
+    width: calc(200px / var(--scale-factor-width));
+}
+
+header nav:last-child {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
 }
 
 header ul {
-    height: 50px;
+    height: calc(50px / var(--scale-factor-height));
     list-style: none;
     display: flex;
     flex-direction: row;
@@ -40,12 +63,12 @@ header ul {
 
 header button {
     background-color: black;
-    padding: 10px;
+    padding: calc(10px / var(--scale-factor-gap));
 
-    height: 50px;
+    height: calc(50px / var(--scale-factor-height));
     width: auto;
 
-    font-size: 12px;
+    font-size: calc(12px / var(--scale-factor-font));
     border: 0px;
 }
 
@@ -63,4 +86,34 @@ header button:active {
     border-top: 5px solid yellow;
     border-bottom: 5px solid yellow;
     transition: 0s;
+}
+
+@media (max-width: 625px) {
+    * {
+        --scale-factor-font: 1.5;
+        --scale-factor-height: 1.2;
+    }
+}
+
+@media (max-width: 500px) {
+    * {
+        --scale-factor-width: 1.5;
+    }
+}
+
+@media (max-width: 375px) {
+    * {
+        --scale-factor-font: 2;
+        --scale-factor-height: 1.5;
+        --scale-factor-width: 2;
+        --scale-factor-gap: 2.5;
+    }
+}
+
+@media (max-width: 300px) {
+    * {
+        --scale-factor-font: 2.5;
+        --scale-factor-height: 2;
+        --scale-factor-width: 3;
+    }
 }
