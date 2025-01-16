@@ -12,3 +12,10 @@
     background-color: white;
     border-radius: 10px;
 }
+
+@media (max-width: 800px) {
+    .section3 {
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+}

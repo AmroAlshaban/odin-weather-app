@@ -130,6 +130,11 @@
 /* ----------------------------- */
 /* ----------------------------- */
 
+.display_hourly_data > details > h4 {
+    margin: 5px;
+    display: none;
+}
+
 .display_hourly_data > details > .details-grid {
     margin: 5px;
     margin-top: 10px;
@@ -139,6 +144,7 @@
 }
 
 .display_hourly_data > details > .details-grid ul {
+    min-height: 250px;
     padding: 10px;
     list-style: none;
     display: grid;
@@ -148,10 +154,12 @@
 }
 
 .display_hourly_data > details > .details-grid li {
-    display: grid;
-    grid-template-areas: "a b" "a c";
-    grid-template-columns: 50px auto;
-    grid-template-rows: 1fr 2fr;
+    padding-top: 2%;
+    padding-bottom: 5%;
+    display: flex;
+    flex-direction: row;
+    justify-content: stretch;
+    align-items: stretch;
     gap: 5px;
     border-bottom: 1px solid rgb(220, 220, 220);
 }
@@ -164,18 +172,90 @@
 
 .display_hourly_data > details > .details-grid li > .info-icon {
     aspect-ratio: 1 / 1;
-    grid-area: a;
+    height: 100%;
+    width: auto;
 }
 
-.display_hourly_data > details > .details-grid li > div:nth-child(2) {
-    grid-area: b;
-    font-size: 16px;
+.display_hourly_data > details > .details-grid li > .info-descriptor {
+    flex: 2 1 auto;
 }
 
-.display_hourly_data > details > .details-grid li > div:nth-child(3) {
-    grid-area: c;
+.display_hourly_data > details > .details-grid li > .info-descriptor p {
+    white-space: normal;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+.display_hourly_data > details > .details-grid li > .info-descriptor > p:nth-child(1) {
+    font-size: 14px;
+}
+
+.display_hourly_data > details > .details-grid li > .info-descriptor > p:nth-child(2) {
     font-size: 16px;
     font-weight: bold;
+}
+
+.display_hourly_data > details > .details-grid .feels-like > .info-icon {
+    background-image: url("../../images/temperature.png");
+    background-repeat: no-repeat;
+    background-size: 50%;
+    background-position: top;
+}
+
+.display_hourly_data > details > .details-grid .wind > .info-icon {
+    background-image: url("../../images/wind-speed.png");
+    background-repeat: no-repeat;
+    background-size: 50%;
+    background-position: top;
+}
+
+.display_hourly_data > details > .details-grid .windgust > .info-icon {
+    background-image: url("../../images/wind-gust.png");
+    background-repeat: no-repeat;
+    background-size: 50%;
+    background-position: top;
+}
+
+.display_hourly_data > details > .details-grid .humidity > .info-icon {
+    background-image: url("../../images/humidity.png");
+    background-repeat: no-repeat;
+    background-size: 50%;
+    background-position: top;
+}
+
+.display_hourly_data > details > .details-grid .uvindex > .info-icon {
+    background-image: url("../../images/uv-index.png");
+    background-repeat: no-repeat;
+    background-size: 50%;
+    background-position: top;
+}
+
+.display_hourly_data > details > .details-grid .rainamount > .info-icon {
+    background-image: url("../../images/water.png");
+    background-repeat: no-repeat;
+    background-size: 50%;
+    background-position: top;
+}
+
+.display_hourly_data > details > .details-grid .moonphase > .info-icon {
+    background-image: url("../../images/moonphase.png");
+    background-repeat: no-repeat;
+    background-size: 50%;
+    background-position: top;
+}
+
+.display_hourly_data > details > .details-grid .pressure > .info-icon {
+    background-image: url("../../images/pressure.png");
+    background-repeat: no-repeat;
+    background-size: 50%;
+    background-position: top;
+}
+
+.display_hourly_data > details > .details-grid .cloudcover > .info-icon {
+    background-image: url("../../images/cloud-cover.png");
+    background-repeat: no-repeat;
+    background-size: 50%;
+    background-position: top;
 }
 
 /* ----------------------------- */
@@ -188,3 +268,59 @@
     padding-bottom: 20px;
 }
 
+@media (max-width: 850px) {
+    .display_hourly_data > details > summary > .wind-speed,
+    .display_hourly_data > details > summary > .rain-percentage {
+        display: none;
+    }
+}
+
+@media (max-width: 750px) {
+    .display_hourly_data > details > summary > .wind-icon,
+    .display_hourly_data > details > summary > .rain-icon {
+        display: none;
+    }
+}
+
+@media (max-width: 625px) {
+
+    .display_hourly_data > details > summary > .wind-icon,
+    .display_hourly_data > details > summary > .rain-icon,
+    .display_hourly_data > details > h4 {
+        display: revert;
+    }
+
+    .display_hourly_data > details > summary > .wind-speed,
+    .display_hourly_data > details > summary > .rain-percentage {
+        display: flex;
+    }
+
+    .display_hourly_data > details > .details-grid ul {
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(5, 1fr);
+    }
+
+    .display_hourly_data > details > summary > .temperature-icon,
+    .display_hourly_data > details > summary > .temperature-description {
+        display: none;
+    }
+}
+
+@media (max-width: 500px) {
+    .display_hourly_data > details > summary > .wind-speed {
+        display: none;
+    }
+}
+
+@media (max-width: 375px) {
+    .display_hourly_data > details > summary > .wind-icon,
+    .display_hourly_data > details > summary > .rain-icon,
+    .display_hourly_data > details > h4 {
+        display: none;
+    }
+
+    .display_hourly_data > details > .details-grid ul {
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(9, 1fr);
+    }
+}

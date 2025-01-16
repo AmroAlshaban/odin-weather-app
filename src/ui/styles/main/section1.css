@@ -55,3 +55,15 @@
 #search_bar_write:focus {
     border: 1px solid black;
 }
+
+@media (max-width: 625px) {
+    #search_bar_write {
+        width: 300px;
+    }
+}
+
+@media (max-width: 375px) {
+    #search_bar_write {
+        width: 200px;
+    }
+}
