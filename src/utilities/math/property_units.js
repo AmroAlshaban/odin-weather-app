@@ -6,14 +6,14 @@ import { windDirCardinalDirConverter } from "./wind_angle_cardinal.js";
 
 
 export function propertyUnits(property, value) {
-    const properties = [
-        "datetime", "datetimeEpoch", "temp", "feelslike",
-        "humidity", "dew", "precip", "precipprob",
-        "snow", "snowdepth", "windgust",
-        "windspeed", "winddir", "pressure", "visibility",
-        "cloudcover", "solarradiation", "solarenergy", "uvindex",
-        "severerisk", "conditions", "icon", "stations", "source"
-    ];
+    // const properties = [
+    //     "datetime", "datetimeEpoch", "temp", "feelslike",
+    //     "humidity", "dew", "precip", "precipprob",
+    //     "snow", "snowdepth", "windgust",
+    //     "windspeed", "winddir", "pressure", "visibility",
+    //     "cloudcover", "solarradiation", "solarenergy", "uvindex",
+    //     "severerisk", "conditions", "icon", "stations", "source"
+    // ];
 
     let fromTempFormat = 'f';
     let fromPrecipFormat = 'i';
@@ -41,7 +41,7 @@ export function propertyUnits(property, value) {
 
             break;
         
-        case (property === 'humidity' || property === 'precipprob'):
+        case (property === 'humidity' || property === 'precipprob' || property === "cloudcover"):
             formattedProperty = `${value}%`;
 
             break;
@@ -55,7 +55,47 @@ export function propertyUnits(property, value) {
 
             break;
 
-        case (property === 'windspeed' || property === 'windgust'):
-            ...
-    }
+        case (property === 'windspeed' || property === 'windgust' || property === 'visibility'):
+            if (fromDirFormat === 'm') {
+                formattedProperty = mphKPHConverter({temp: value, from: fromDirFormat});
+            } else {
+                formattedProperty = `${value} mph`;
+            };
+
+            break;
+
+        case (property === 'winddir'):
+            formattedProperty = windDirCardinalDirConverter(value);
+
+            break;
+
+        case (property === 'windspeeddir' || property === 'windgustdir'):
+            if (property === 'windspeeddir') {
+                formattedProperty = `${propertyUnits('winddir', value[0])} ${propertyUnits('windspeed', value[1])}`;
+            } else {
+                formattedProperty = `${propertyUnits('winddir', value[0])} ${propertyUnits('windgust', value[1])}`;
+            };
+            
+            break;
+        
+        case property === 'pressure':
+            formattedProperty = `${value} hPa`;
+
+            break;
+
+        case property === 'solarradiation':
+            formattedProperty = `${value} W/m²`;
+
+            break;
+
+        case property === 'solarenergy':
+            formattedProperty = `${value} kWh/m²`;
+
+            break;
+        
+        default:
+            formattedProperty = value;
+    };
+
+    return formattedProperty;
 };
