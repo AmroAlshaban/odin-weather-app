@@ -1,5 +1,6 @@
 import { createNewElement } from "../../utilities/helpers/create_new_element";
-import { toCamelCase } from "../../utilities/helpers/to_camelcase";
+import { removeHyphens } from "../../utilities/helpers/remove_hyphen";
+// import { toCamelCase } from "../../utilities/helpers/to_camelcase";
 
 
 export function createDisplayHourlyData({
@@ -39,12 +40,12 @@ export function createDisplayHourlyData({
     });
 
     const allSummaryComponents = Array.from({ length: 24 }, (_, index) => {
-        const summaryComponents = Array.from({ length: dataSummary.classNames.length }, (_, subIndex) => {
+        const summaryComponents = Array.from({ length: summaryComponentClassNames.length }, (_, subIndex) => {
             const summaryComponent = createDataSummaryComponent({
-                className: dataSummary.classNames[subIndex],
-                isStatic: dataSummary.isStatic[subIndex],
-                isIcon: dataSummary.classNames[subIndex].includes('icon'),
-                text: dataSummary.hour(index)[toCamelCase(dataSummary.classNames[subIndex])],
+                className: summaryComponentClassNames[subIndex],
+                isStatic: summaryComponentStatic[subIndex],
+                isIcon: summaryComponentClassNames[subIndex].includes('icon') || summaryComponentClassNames[subIndex] === 'details-arrow',
+                text: dataSummary.hour(index).get(removeHyphens(summaryComponentClassNames[subIndex])),
             });
     
             return summaryComponent;
@@ -66,11 +67,11 @@ export function createDisplayHourlyData({
     });
 
     const allLiComponents = Array.from({ length: 24 }, (_, index) => {
-        const liComponents = Array.from({ length: dataDetails.hour(index).classNames.length }, (_, subIndex) => {
+        const liComponents = Array.from({ length: detailsComponentClassNames.length }, (_, subIndex) => {
             const liComponent = createDetailsGridListElement({
-                liClassName: dataDetails.classNames[subIndex],
-                metricTitle: dataDetails.titles[subIndex],
-                metricValue: dataDetails.hour(index)[toCamelCase(dataDetails.classNames[subIndex])],
+                liClassName: detailsComponentClassNames[subIndex],
+                metricTitle: detailsComponentTitles[subIndex],
+                metricValue: dataDetails.hour(index).get(removeHyphens(dataDetails.classNames[subIndex])),
             });
     
             return liComponent;
