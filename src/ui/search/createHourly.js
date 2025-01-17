@@ -1,13 +1,10 @@
 import { createNewElement } from "../../utilities/helpers/create_new_element";
-import { removeHyphens } from "../../utilities/helpers/remove_hyphen";
-// import { toCamelCase } from "../../utilities/helpers/to_camelcase";
 
 
 export function createDisplayHourlyData({
     dataLocation,
     dataDayDate,
-    dataSummary,
-    dataDetails
+    weatherData
 }) {
     const summaryComponentClassNames = [
         'time', 'temperature', 'temperature-icon', 'temperature-description',
@@ -16,6 +13,11 @@ export function createDisplayHourlyData({
 
     const summaryComponentStatic = [
         true, true, true, false, true, true, true, false, true,
+    ];
+
+    const summaryComponentProperties = [
+        'datetime', 'temp', null, 'conditions',
+        null, 'precipprob', null, 'windspeeddir', null
     ];
 
     const detailsComponentClassNames = [
@@ -28,6 +30,12 @@ export function createDisplayHourlyData({
         'Feels Like', 'Wind Speed', 'Wind Gust', 'Humidity',
         'UV Index', 'Rain Amount and Proability', 'Moon Phase', 'Pressure',
         'Cloud Cover', 'Dew', 'Snow', 'Solar Radiation',
+    ];
+
+    const detailsComponentProperties = [
+        'feelslike', 'windspeeddir', 'windgustdir', 'humidity',
+        'uvindex', 'precipprob', 'moonphase', 'pressure',
+        'cloudcover', 'dew', 'snow', 'solarradiation',
     ];
 
     const titleCard = createTitleCard({
@@ -45,7 +53,7 @@ export function createDisplayHourlyData({
                 className: summaryComponentClassNames[subIndex],
                 isStatic: summaryComponentStatic[subIndex],
                 isIcon: summaryComponentClassNames[subIndex].includes('icon') || summaryComponentClassNames[subIndex] === 'details-arrow',
-                text: dataSummary.hour(index).get(removeHyphens(summaryComponentClassNames[subIndex])),
+                text: weatherData.hour(index).get(summaryComponentProperties[subIndex]),
             });
     
             return summaryComponent;
@@ -61,7 +69,7 @@ export function createDisplayHourlyData({
     });
 
     const allH4 = Array.from({ length: 24 }, (_, index) => {
-        const h4 = createH4Element(dataDetails.hour(index).conditions);
+        const h4 = createH4Element(weatherData.hour(index).get('conditions'));
 
         return h4;
     });
@@ -71,7 +79,7 @@ export function createDisplayHourlyData({
             const liComponent = createDetailsGridListElement({
                 liClassName: detailsComponentClassNames[subIndex],
                 metricTitle: detailsComponentTitles[subIndex],
-                metricValue: dataDetails.hour(index).get(removeHyphens(dataDetails.classNames[subIndex])),
+                metricValue: weatherData.hour(index).get(detailsComponentProperties[subIndex]),
             });
     
             return liComponent;
