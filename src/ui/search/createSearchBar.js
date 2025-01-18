@@ -12,16 +12,20 @@ export function createSearchBar({elementClassName, inputElement, imageElement}) 
 };
 
 
-export function createSearchBarImage({elementClassName}) {
+export function createSearchBarImage({elementClassName, eventListeners=NaN}) {
     const searchBarImage = createNewElement({
         className: elementClassName,
     });
+
+    if (!isNaN(eventListeners)) {
+        eventListeners(searchBarImage);
+    };
 
     return searchBarImage;
 };
 
 
-export function createSearchBarInput({inputType, inputPlaceholder, inputId}) {
+export function createSearchBarInput({inputType, inputPlaceholder, inputId, eventListeners=NaN}) {
     const inputElement = createNewElement({
         nameTag: 'input',
         idName: inputId,
@@ -30,6 +34,10 @@ export function createSearchBarInput({inputType, inputPlaceholder, inputId}) {
             placeholder: inputPlaceholder,
         },
     });
+
+    if (!isNaN(eventListeners)) {
+        eventListeners(inputElement);
+    };
 
     return inputElement;
 };

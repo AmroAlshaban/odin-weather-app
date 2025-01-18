@@ -1,11 +1,8 @@
 import { createNewElement } from "../../utilities/helpers/create_new_element";
+import { propertyUnits } from "../../utilities/math/property_units";
 
 
-export function createDisplayHourlyData({
-    dataLocation,
-    dataDayDate,
-    weatherData
-}) {
+export function createDisplayHourlyData(weatherData) {
     const summaryComponentClassNames = [
         'time', 'temperature', 'temperature-icon', 'temperature-description',
         'rain-icon', 'rain-percentage', 'wind-icon', 'wind-speed', 'details-arrow',
@@ -34,17 +31,17 @@ export function createDisplayHourlyData({
 
     const detailsComponentProperties = [
         'feelslike', 'windspeeddir', 'windgustdir', 'humidity',
-        'uvindex', 'precipprob', 'moonphase', 'pressure',
+        'uvindex', 'precipandprob', 'moonphase', 'pressure',
         'cloudcover', 'dew', 'snow', 'solarradiation',
     ];
 
     const titleCard = createTitleCard({
         displayType: 'hourly',
-        location: dataLocation,
+        location: weatherData.location,
     });
 
     const dayDate = createDayDate({
-        dayDateText: dataDayDate,
+        dayDateText: propertyUnits(weatherData.get('datetime')),
     });
 
     const allSummaryComponents = Array.from({ length: 24 }, (_, index) => {
@@ -53,7 +50,7 @@ export function createDisplayHourlyData({
                 className: summaryComponentClassNames[subIndex],
                 isStatic: summaryComponentStatic[subIndex],
                 isIcon: summaryComponentClassNames[subIndex].includes('icon') || summaryComponentClassNames[subIndex] === 'details-arrow',
-                text: weatherData.hour(index).get(summaryComponentProperties[subIndex]),
+                text: propertyUnits(weatherData.hour(index).get(summaryComponentProperties[subIndex])),
             });
     
             return summaryComponent;
@@ -79,7 +76,7 @@ export function createDisplayHourlyData({
             const liComponent = createDetailsGridListElement({
                 liClassName: detailsComponentClassNames[subIndex],
                 metricTitle: detailsComponentTitles[subIndex],
-                metricValue: weatherData.hour(index).get(detailsComponentProperties[subIndex]),
+                metricValue: propertyUnits(weatherData.hour(index).get(detailsComponentProperties[subIndex])),
             });
     
             return liComponent;

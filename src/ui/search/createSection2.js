@@ -1,4 +1,5 @@
 import { createButtonListContainer, createButtonListElement, createButton } from "./createDataNavigation.js";
+import { getNavigationEventListeners } from "./event_listeners/dataNavigationEventListeners.js";
 
 
 export function createSection2() {
@@ -9,7 +10,7 @@ export function createSection2() {
         const button = createButton({
             buttonId: liElementsIds[index],
             buttonText: liElementsTextContent[index],
-            eventListeners: NaN,
+            eventListeners: getNavigationEventListeners(liElementsIds[index]),
         });
 
         return button;

@@ -1,5 +1,9 @@
 import { createSearchBarInput, createSearchBarImage, createSearchBar } from "./createSearchBar.js";
 import { createNewElement } from "../../utilities/helpers/create_new_element";
+import { 
+    addSearchBarEventListeners, 
+    addSearchImageEventListeners 
+} from "./event_listeners/searchBarEventListeners.js";
 
 
 export function createSection1() {
@@ -7,10 +11,12 @@ export function createSection1() {
         inputType: 'text',
         inputPlaceholder: 'Search City, State or Country',
         inputId: 'search_bar_write',
+        eventListeners: addSearchBarEventListeners,
     });
 
     const makeSearchBarImage = createSearchBarImage({
-        elementClassName: 'search_bar_image'
+        elementClassName: 'search_bar_image',
+        eventListeners: addSearchImageEventListeners,
     });
 
     const makeSearchBar = createSearchBar({

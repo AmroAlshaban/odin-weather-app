@@ -20,6 +20,8 @@ export const GetWeatherDataMixin = {
             return this._includeWindDir('windspeed');
         } else if (key === 'windgustdir') {
             return this._includeWindDir('windgust');
+        } else if (key === 'precipandprob') {
+            return this._includePrecipProb('precip');
         } else if (properties.includes(key)) {
             return this._getData()[key];
         } else {
@@ -30,8 +32,16 @@ export const GetWeatherDataMixin = {
     _includeWindDir(speedOrGust) {
         speedOrGust = speedOrGust.toLowerCase();
 
-        return ['windspeed', 'windgust'].includes(speedOrGust) 
-                ? [this.get('winddir'), this.get(speedOrGust)] 
+        return ['windspeed', 'windgust'].includes(speedOrGust)
+                ? [this.get('winddir'), this.get(speedOrGust)]
                 : null;
-    }
+    },
+
+    _includePrecipProb(precipOrProb) {
+        precipOrProb = precipOrProb.toLowerCase();
+
+        return precipOrProb === 'precip' 
+        ? [this.get(precipOrProb), this.get('precipprob')] 
+        : null;
+    },
 };

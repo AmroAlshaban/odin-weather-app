@@ -1,3 +1,4 @@
+import { convertMilitaryTimeToAmPm } from "./military_to_am_pm.js";
 import { celsiusFahrenheitConverter } from "./celsius_fahrenheit";
 import { iso8601ToLongDate } from "./iso8601_to_long_date";
 import { millimetersInchesConverter } from "./millimeters_inches_converter";
@@ -24,11 +25,11 @@ export function propertyUnits(property, value) {
     switch (true) {
         case property === 'datetime':
             if (value.split(':').length > 1) {
-                formattedProperty = celsiusFahrenheitConverter(value);
+                formattedProperty = convertMilitaryTimeToAmPm(value);
             } else if (value.split('-') > 1) {
                 formattedProperty = iso8601ToLongDate(value);
             } else {
-                throw new Error("Invalid valie.");
+                throw new Error("Invalid value.");
             };
 
             break;
