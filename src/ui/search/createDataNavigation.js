@@ -28,7 +28,7 @@ export function createButton({buttonId, buttonText, eventListeners=NaN}) {
         textContent: buttonText,
     });
 
-    if (!isNaN(eventListeners)) {
+    if (typeof eventListeners === 'function') {
         eventListeners(button);
     };
 

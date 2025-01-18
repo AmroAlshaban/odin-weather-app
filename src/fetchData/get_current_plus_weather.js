@@ -1,6 +1,6 @@
 export async function getCurrentPlusWeather(location) {
     try {
-        const response = await fetch(`https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${location}?key=32EVKX7B5ZR5SL7GX7X5JZHLM`);
+        const response = await fetch(`https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${location}?key=TT9728CVK9M663F6AMRXU47AV`);
         
         if (!response.ok) {
             throw new Error(`Error: ${response.status} - ${response.statusText}`);

@@ -35,11 +35,13 @@ export function createDisplayHourlyData(weatherData) {
         'cloudcover', 'dew', 'snow', 'solarradiation',
     ];
 
+    console.log(`${weatherData.location} Success`);
     const titleCard = createTitleCard({
         displayType: 'hourly',
         location: weatherData.location,
     });
 
+    console.log(weatherData.constructor.name);
     const dayDate = createDayDate({
         dayDateText: propertyUnits(weatherData.get('datetime')),
     });

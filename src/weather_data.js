@@ -1,5 +1,4 @@
 let currentWeatherData = null;
-let previousWeatherData = null;
 
 
 export function getCurrentWeatherData() {
@@ -7,16 +6,6 @@ export function getCurrentWeatherData() {
 };
 
 
-export function getPreviousWeatherData() {
-    return previousWeatherData;
-};
-
-
 export function setCurrentWeatherData(newData) {
     currentWeatherData = newData;
-};
-
-
-export function setPreviousWeatherData(newData) {
-    previousWeatherData = newData;
 };

@@ -1,5 +1,6 @@
 import { createButtonListContainer, createButtonListElement, createButton } from "./createDataNavigation.js";
 import { getNavigationEventListeners } from "./event_listeners/dataNavigationEventListeners.js";
+import { createNewElement } from "../../utilities/helpers/create_new_element.js";
 
 
 export function createSection2() {

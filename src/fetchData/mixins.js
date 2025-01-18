@@ -6,12 +6,12 @@ export const GetWeatherDataMixin = {
 
         let properties;
 
-        if (this._getClassIdentity() === 'DayWeather') {
+        if (this.constructor.name === 'DayWeather') {
             properties = DayWeather.properties;
-        } else if (this._getClassIdentity() === 'HourlyWeather') {
+        } else if (this.constructor.name === 'HourlyWeather') {
             properties = HourlyWeather.properties;
         } else {
-            throw new Error(`Invalid class identity: '${this._getClassIdentity()}'`);
+            throw new Error(`Invalid class identity: '${this.constructor.name}'`);
         };
 
         key = key.toLowerCase();

@@ -1,6 +1,6 @@
-export async function getPreviousPlusWeather(location, dateISO8601) {
+export async function getPreviousWeather(location, rangeDateISO8601) {
     try {
-        const response = await fetch(`https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${location}/${dateISO8601}?key=32EVKX7B5ZR5SL7GX7X5JZHLM`);
+        const response = await fetch(`https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${location}/${rangeDateISO8601[0]}/${rangeDateISO8601[1]}?key=LYKH5D9GNTQN9GG6XALYBGJAQ`);
         
         if (!response.ok) {
             throw new Error(`Error: ${response.status} - ${response.statusText}`);

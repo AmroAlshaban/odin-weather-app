@@ -17,7 +17,7 @@ export function createSearchBarImage({elementClassName, eventListeners=NaN}) {
         className: elementClassName,
     });
 
-    if (!isNaN(eventListeners)) {
+    if (typeof eventListeners === "function") {
         eventListeners(searchBarImage);
     };
 
@@ -35,7 +35,7 @@ export function createSearchBarInput({inputType, inputPlaceholder, inputId, even
         },
     });
 
-    if (!isNaN(eventListeners)) {
+    if (typeof eventListeners === "function") {
         eventListeners(inputElement);
     };
 
