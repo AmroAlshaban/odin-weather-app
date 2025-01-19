@@ -7,7 +7,7 @@
 }
 
 body {
-    background-color: rgb(234, 234, 234);
+    background-color: lightblue;
 }
 
 @import url(ui/styles/header/styles.css);

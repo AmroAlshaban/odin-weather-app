@@ -14,7 +14,7 @@ export function addAboutButtonEventListeners(node) {
     if (getAboutNode() === null) {
         setAboutNode(document.querySelector(".about-container"));
         const main = document.querySelector("main");
-        main.replaceChildren();
+        main.removeChild(document.querySelector(".about-container"));
     };
 
     node.addEventListener("click", () => {
@@ -23,7 +23,7 @@ export function addAboutButtonEventListeners(node) {
         const main = document.querySelector("main");
         main.replaceChildren();
 
-        main.appendChild(getAboutNode())
+        main.appendChild(getAboutNode());
     });
 
 };

@@ -1,0 +1,19 @@
+.home-container {
+    height: 500px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.home-container h1 {
+    font-size: 4vw;
+}
+
+.home-container p {
+    margin-top: 3vh;
+    font-size: 1.5vw;
+    font-weight: bold;
+}

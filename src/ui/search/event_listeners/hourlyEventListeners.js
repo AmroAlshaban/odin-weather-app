@@ -16,6 +16,11 @@ export function addHourlyEventListeners(node) {
     
             const mainNode = document.querySelector("main");
             mainNode.appendChild(section3);
+        } else {
+            const section3 = createSection3();
+    
+            const mainNode = document.querySelector("main");
+            mainNode.appendChild(section3);
         };
     });
 

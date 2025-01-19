@@ -5,7 +5,7 @@ import { CurrentPlusWeather } from "../../../fetch_data/current_plus_weather.js"
 
 
 export function addForecastEventListeners(node) {
-    
+
     node.addEventListener("click", () => {
 
         const data = getCurrentWeatherData();
