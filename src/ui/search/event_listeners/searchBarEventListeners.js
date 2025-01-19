@@ -16,7 +16,6 @@ export function addSearchBarEventListeners(node) {
 
             try {
                 currentData = await getCurrentPlusWeather(query);
-                
                 if (currentData.error) {
                     let j = 5;
 
