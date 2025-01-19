@@ -95,8 +95,9 @@
     display: none;
 }
 
-.about-container details > .about-intro > .article {
+.about-container details > .about-intro > article {
     flex: 1;
+    overflow-y: auto;
 }
 
 .about-container section * {

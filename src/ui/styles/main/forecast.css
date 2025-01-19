@@ -7,8 +7,8 @@
 
 .nested-details .line-appendor {
     flex: 1;
-    min-width: 25px;
-    max-width: 50px;
+    min-width: 15px;
+    max-width: 40px;
     background-color: gray;
 }
 
@@ -45,9 +45,7 @@
     .nested-details details > summary > .rain-percentage {
         display: none;
     }
-}
 
-@media (max-width: 375px) {
     .nested-details .line-appendor {
         display: none;
     }
