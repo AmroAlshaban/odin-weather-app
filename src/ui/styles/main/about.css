@@ -80,7 +80,7 @@
     height: 300px;
 }
 
-.about-container details > .about-intro > .profile-picture {
+.about-container details > .about-intro .profile-picture {
     aspect-ratio: 1 / 1;
     height: 100%;
     width: auto;
@@ -91,7 +91,11 @@
     background-size: cover;
 }
 
-.about-container details > .about-intro > article {
+.profile-picture-hidden {
+    display: none;
+}
+
+.about-container details > .about-intro > .article {
     flex: 1;
 }
 
@@ -107,6 +111,18 @@
 #about-gif {
     width: 100%;
     height: auto;
+}
+
+@media (max-width: 900px) {
+    .profile-picture {
+        display: none !important;
+    }
+}
+
+@media (max-width: 750px) {
+    .about-container details > .about-intro {
+        flex-direction: column !important;
+    }
 }
 
 @media (max-width: 625px) {
