@@ -4,8 +4,8 @@ import { createNewElement } from "../../utilities/helpers/create_new_element.js"
 
 
 export function createSection2() {
-    const liElementsIds = ['today', 'hourly', 'previousdate', 'forecast'];
-    const liElementsTextContent = ['Today', 'Hourly', 'Previous Date', 'Forecast'];
+    const liElementsIds = ['today', 'hourly', 'forecast'];
+    const liElementsTextContent = ['Today', 'Hourly', 'Forecast'];
 
     const buttons = Array.from({ length: liElementsIds.length }, (_, index) => {
         const button = createButton({

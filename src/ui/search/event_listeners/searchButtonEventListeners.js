@@ -11,9 +11,9 @@ export function addSearchButtonEventListeners(node) {
 
         const section1 = createSection1();
         const section2 = createSection2();
-        const section3 = createSection3();
+        // const section3 = createSection3();
 
-        main.append(section1, section2, section3);
+        main.append(section1, section2);
     });
 
 };

@@ -1,5 +1,6 @@
 import { createNewElement } from "../../utilities/helpers/create_new_element";
 import { propertyUnits } from "../../utilities/math/property_units";
+import { addSummaryEventListeners } from "./event_listeners/summaryEventListeners";
 
 
 export function createDisplayHourlyData(weatherData) {
@@ -10,6 +11,10 @@ export function createDisplayHourlyData(weatherData) {
 
     const summaryComponentStatic = [
         true, true, true, false, true, true, true, false, true,
+    ];
+
+    const summaryComponentIcon = [
+        false, false, true, false, true, false, true, false, true,
     ];
 
     const summaryComponentProperties = [
@@ -25,45 +30,45 @@ export function createDisplayHourlyData(weatherData) {
 
     const detailsComponentTitles = [
         'Feels Like', 'Wind Speed', 'Wind Gust', 'Humidity',
-        'UV Index', 'Rain Amount and Proability', 'Moon Phase', 'Pressure',
+        'UV Index', 'Rain Amount and Proability', 'Severe Risk', 'Pressure',
         'Cloud Cover', 'Dew', 'Snow', 'Solar Radiation',
     ];
 
     const detailsComponentProperties = [
         'feelslike', 'windspeeddir', 'windgustdir', 'humidity',
-        'uvindex', 'precipandprob', 'moonphase', 'pressure',
+        'uvindex', 'precipandprob', 'severerisk', 'pressure',
         'cloudcover', 'dew', 'snow', 'solarradiation',
     ];
 
-    console.log(`${weatherData.location} Success`);
     const titleCard = createTitleCard({
         displayType: 'hourly',
-        location: weatherData.location,
+        location: weatherData.address(),
     });
 
-    console.log(weatherData.constructor.name);
-    const dayDate = createDayDate({
-        dayDateText: propertyUnits(weatherData.get('datetime')),
-    });
+    const dayDate = createDayDate(propertyUnits('datetime', weatherData.get('datetime')));
 
     const allSummaryComponents = Array.from({ length: 24 }, (_, index) => {
-        const summaryComponents = Array.from({ length: summaryComponentClassNames.length }, (_, subIndex) => {
+        const summaryComponents = Array.from({ length: 9 }, (_, subIndex) => {
             const summaryComponent = createDataSummaryComponent({
                 className: summaryComponentClassNames[subIndex],
                 isStatic: summaryComponentStatic[subIndex],
-                isIcon: summaryComponentClassNames[subIndex].includes('icon') || summaryComponentClassNames[subIndex] === 'details-arrow',
-                text: propertyUnits(weatherData.hour(index).get(summaryComponentProperties[subIndex])),
+                isIcon: summaryComponentIcon[subIndex],
+                text: propertyUnits(
+                    summaryComponentProperties[subIndex], 
+                    weatherData.hour(index).get(summaryComponentProperties[subIndex])
+                ),
             });
-    
+
             return summaryComponent;
         });
-
+        // throw new Error("Ehhhh!")
         return summaryComponents;
     });
 
     const allSummary = Array.from({ length: 24 }, (_, index) => {
         const summary = createDataSummary(allSummaryComponents[index]);
 
+        addSummaryEventListeners(summary);
         return summary;
     });
 
@@ -78,7 +83,7 @@ export function createDisplayHourlyData(weatherData) {
             const liComponent = createDetailsGridListElement({
                 liClassName: detailsComponentClassNames[subIndex],
                 metricTitle: detailsComponentTitles[subIndex],
-                metricValue: propertyUnits(weatherData.hour(index).get(detailsComponentProperties[subIndex])),
+                metricValue: propertyUnits(detailsComponentProperties[subIndex], weatherData.hour(index).get(detailsComponentProperties[subIndex])),
             });
     
             return liComponent;
@@ -107,6 +112,7 @@ export function createDisplayHourlyData(weatherData) {
             eventListeners: NaN,
         });
 
+        // addDetailsEventListeners(data);
         return data;
     });
 

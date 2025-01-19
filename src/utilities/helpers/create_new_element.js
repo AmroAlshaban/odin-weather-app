@@ -1,9 +1,9 @@
 export function createNewElement({nameTag='div', className='', idName='', textContent='', attributes={}} = {}) {
     const newElement = document.createElement(nameTag);
-    if (className !== '') {
+    if (Array.isArray(className)) {
+        newElement.classList.add(...className);
+    } else if (className !== '') {
         newElement.classList.add(className);
-    } else if (Array.isArray(className)) {
-        newElement.classList.add(...className)
     }
     if (idName !== '') {
         newElement.id = idName;

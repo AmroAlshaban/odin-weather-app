@@ -9,12 +9,14 @@ export function addHourlyEventListeners(node) {
     node.addEventListener("click", () => {
 
         const data = getCurrentWeatherData();
-        const weatherObject = new CurrentPlusWeather(data.address, data);
-        const displayHourly = createDisplayHourlyData(weatherObject.today());
-        const section3 = createSection3(displayHourly);
-
-        const mainNode = document.querySelector("main");
-        mainNode.appendChild(section3);
+        if (data !== null) {
+            const weatherObject = new CurrentPlusWeather(data.address, data);
+            const displayHourly = createDisplayHourlyData(weatherObject.today());
+            const section3 = createSection3(displayHourly);
+    
+            const mainNode = document.querySelector("main");
+            mainNode.appendChild(section3);
+        };
     });
 
 };

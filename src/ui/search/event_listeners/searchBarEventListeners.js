@@ -12,8 +12,6 @@ export function addSearchBarEventListeners(node) {
             const query = node.value.trim();
             node.value = '';
 
-            console.log(query);
-
             let currentData;
 
             try {

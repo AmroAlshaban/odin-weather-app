@@ -2,7 +2,7 @@ import { convertMilitaryTimeToAmPm } from "./military_to_am_pm.js";
 import { celsiusFahrenheitConverter } from "./celsius_fahrenheit";
 import { iso8601ToLongDate } from "./iso8601_to_long_date";
 import { millimetersInchesConverter } from "./millimeters_inches_converter";
-import { mphKPHConverter } from "./mph_kmh_converter.js";
+import { mphKPHConverter } from "./mph_kph_converter.js";
 import { windDirCardinalDirConverter } from "./wind_angle_cardinal.js";
 
 
@@ -26,7 +26,7 @@ export function propertyUnits(property, value) {
         case property === 'datetime':
             if (value.split(':').length > 1) {
                 formattedProperty = convertMilitaryTimeToAmPm(value);
-            } else if (value.split('-') > 1) {
+            } else if (value.split('-').length > 1) {
                 formattedProperty = iso8601ToLongDate(value);
             } else {
                 throw new Error("Invalid value.");
@@ -49,7 +49,7 @@ export function propertyUnits(property, value) {
 
         case (property === 'precip' || property === 'snow' || property === 'snowdepth'):
             if (fromPrecipFormat === 'i') {
-                formattedProperty = millimetersInchesConverter({temp: value, from: fromPrecipFormat});
+                formattedProperty = millimetersInchesConverter({distance: value, from: fromPrecipFormat});
             } else {
                 formattedProperty = `${value} in`;
             };
@@ -58,7 +58,7 @@ export function propertyUnits(property, value) {
 
         case (property === 'windspeed' || property === 'windgust' || property === 'visibility'):
             if (fromDirFormat === 'm') {
-                formattedProperty = mphKPHConverter({temp: value, from: fromDirFormat});
+                formattedProperty = mphKPHConverter({unit: value, from: fromDirFormat});
             } else {
                 formattedProperty = `${value} mph`;
             };
@@ -96,6 +96,8 @@ export function propertyUnits(property, value) {
         
         default:
             formattedProperty = value;
+
+            break;
     };
 
     return formattedProperty;

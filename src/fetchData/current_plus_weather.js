@@ -1,6 +1,55 @@
 // import { DayWeather } from "./day_weather";
 // import { HourlyWeather } from "./hourly_weather";
-import { GetWeatherDataMixin } from "./mixins.js";
+// import { GetWeatherDataMixin } from "./mixins.js";
+
+
+export const GetWeatherDataMixin = {
+    get(key) {
+        if (key === null) {
+            return '';
+        };
+
+        let properties;
+
+        if (this.constructor.name === 'DayWeather') {
+            properties = DayWeather.properties;
+        } else if (this.constructor.name === 'HourlyWeather') {
+            properties = HourlyWeather.properties;
+        } else {
+            throw new Error(`Invalid class identity: '${this._getClassIdentity()}'`);
+        };
+
+        key = key.toLowerCase();
+        
+        if (key === 'windspeeddir') {
+            return this._includeWindDir('windspeed');
+        } else if (key === 'windgustdir') {
+            return this._includeWindDir('windgust');
+        } else if (key === 'precipandprob') {
+            return this._includePrecipProb('precip');
+        } else if (properties.includes(key)) {
+            return this._getData()[key];
+        } else {
+            throw new Error(`Invalid key: '${key}' not found in properties for ${this._getClassIdentity()}.`);
+        };
+    },
+
+    _includeWindDir(speedOrGust) {
+        speedOrGust = speedOrGust.toLowerCase();
+
+        return ['windspeed', 'windgust'].includes(speedOrGust)
+                ? [this.get('winddir'), this.get(speedOrGust)]
+                : null;
+    },
+
+    _includePrecipProb(precipOrProb) {
+        precipOrProb = precipOrProb.toLowerCase();
+
+        return precipOrProb === 'precip' 
+        ? [this.get(precipOrProb), this.get('precipprob')] 
+        : null;
+    },
+};
 
 
 export class CurrentPlusWeather {
@@ -48,10 +97,14 @@ export class CurrentPlusWeather {
         return new CurrentPlusWeather(this.location, this.#data).latitude();
     };
 
+    address() {
+        return this.#data.resolvedAddress;
+    };
+
     currentConditions() {
-        if (this.#classIdentity === 'CurrentPlusWeather') {
+        if (this.constructor.name === 'CurrentPlusWeather') {
             return new HourlyWeather(this.location, this.#data.currentConditions, this.#data);
-        } else if (['DayWeather', 'HourlyWeather'].includes(this.#classIdentity)) {
+        } else if (['DayWeather', 'HourlyWeather'].includes(this.constructor.name)) {
             return this;
         };
 
@@ -95,6 +148,14 @@ export class DayWeather extends CurrentPlusWeather {
     hour(n) {
         return new HourlyWeather(this.location, this.#subData.hours[n], this.#data);
     };
+
+    _getData() {
+        return this.#subData;
+    };
+
+    _getClassIdentity() {
+        return this.#classIdentity;
+    };
 };
 
 Object.assign(DayWeather.prototype, GetWeatherDataMixin);
@@ -117,6 +178,14 @@ export class HourlyWeather extends CurrentPlusWeather {
         super(location, fullData);
         this.#data = fullData;
         this.#subData = dataJSON;
+    };
+
+    _getData() {
+        return this.#subData;
+    };
+
+    _getClassIdentity() {
+        return this.#classIdentity;
     };
 };
 
