@@ -358,7 +358,7 @@
     }
 }
 
-@media (max-width: 375px) {
+@media (max-width: 350px) {
     .section3 {
         padding: 5px;
     }
