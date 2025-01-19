@@ -30,7 +30,7 @@ export function createDisplayHourlyData(weatherData) {
 
     const detailsComponentTitles = [
         'Feels Like', 'Wind Speed', 'Wind Gust', 'Humidity',
-        'UV Index', 'Rain Amount and Proability', 'Severe Risk', 'Pressure',
+        'UV Index', 'Rain', 'Severe Risk', 'Pressure',
         'Cloud Cover', 'Dew', 'Snow', 'Solar Radiation',
     ];
 
@@ -53,6 +53,9 @@ export function createDisplayHourlyData(weatherData) {
                 className: summaryComponentClassNames[subIndex],
                 isStatic: summaryComponentStatic[subIndex],
                 isIcon: summaryComponentIcon[subIndex],
+                iconName: summaryComponentClassNames[subIndex] === 'temperature-icon' 
+                        ? weatherData.hour(index).get('icon')
+                        : null,
                 text: propertyUnits(
                     summaryComponentProperties[subIndex], 
                     weatherData.hour(index).get(summaryComponentProperties[subIndex])
@@ -169,7 +172,7 @@ export function createData({summaryElement, h4Element, detailsGrid, eventListene
     });
 
     details.append(summaryElement, h4Element, detailsGrid);
-    if (!isNaN(eventListeners)) {
+    if (typeof eventListeners === 'function') {
         eventListeners(details);
     };
 
@@ -191,6 +194,7 @@ export function createDataSummaryComponent({
     className='',
     isStatic=false,
     isIcon=false,
+    iconName=null,
     text=''
 }) {
     const container = createNewElement({
@@ -204,6 +208,15 @@ export function createDataSummaryComponent({
         });
 
         container.appendChild(pElement);
+    } else if (iconName !== null && iconName !== undefined){
+        const tempImage = require(`../images/${iconName}.svg`);
+
+        Object.assign(container.style, {
+            backgroundImage: `url(${tempImage})`,
+            backgroundRepeat: 'no-repeat',
+            backgroundSize: '50%',
+            backgroundPosition: 'center',
+        });
     };
 
     return container;

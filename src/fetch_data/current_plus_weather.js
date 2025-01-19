@@ -167,7 +167,7 @@ export class HourlyWeather extends CurrentPlusWeather {
         "snow", "snowdepth", "preciptype", "windgust",
         "windspeed", "winddir", "pressure", "visibility",
         "cloudcover", "solarradiation", "solarenergy", "uvindex",
-        "severerisk", "conditions", "icon", "stations", "source"
+        "severerisk", "conditions", "icon", "stations", "source",
     ];
 
     #classIdentity = 'HourlyWeather';

@@ -1,15 +1,15 @@
 export function millimetersInchesConverter({
     distance, 
-    from='m'
+    to='i'
 }) {
-    if (from.toLowerCase() === 'm' || 
-        from.toLocaleLowerCase() === 'millimeter' ||
-        from.toLocaleLowerCase() === 'millimeters') {
-        return `${(distance / 25.4).toFixed(2)} in`;
-    } else if (from.toLocaleLowerCase() === 'i' || 
-               from.toLocaleLowerCase() === 'inch' ||
-               from.toLocaleLowerCase() === 'inches') {
+    if (to.toLowerCase() === 'm' || 
+        to.toLocaleLowerCase() === 'millimeter' ||
+        to.toLocaleLowerCase() === 'millimeters') {
         return `${(distance * 25.4).toFixed(2)} mm`;
+    } else if (to.toLocaleLowerCase() === 'i' || 
+               to.toLocaleLowerCase() === 'inch' ||
+               to.toLocaleLowerCase() === 'inches') {
+        return `${(distance / 25.4).toFixed(2)} in`;
     } else {
         throw new Error("Error: invalid data entry.");
     };

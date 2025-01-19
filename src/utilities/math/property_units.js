@@ -4,6 +4,8 @@ import { iso8601ToLongDate } from "./iso8601_to_long_date";
 import { millimetersInchesConverter } from "./millimeters_inches_converter";
 import { mphKPHConverter } from "./mph_kph_converter.js";
 import { windDirCardinalDirConverter } from "./wind_angle_cardinal.js";
+import { toTemperature, toDistance, toSpeed } from "../../unit_formats/variables.js";
+import { getUnitFormat } from "../../unit_formats/us_metric.js";
 
 
 export function propertyUnits(property, value) {
@@ -15,10 +17,6 @@ export function propertyUnits(property, value) {
     //     "cloudcover", "solarradiation", "solarenergy", "uvindex",
     //     "severerisk", "conditions", "icon", "stations", "source"
     // ];
-
-    let fromTempFormat = 'f';
-    let fromPrecipFormat = 'i';
-    let fromDirFormat = 'm';
 
     let formattedProperty;
 
@@ -34,8 +32,8 @@ export function propertyUnits(property, value) {
 
             break;
         case (property === 'temp' || property === 'feelslike' || property === 'dew'):
-            if (fromTempFormat === 'f') {
-                formattedProperty = `${celsiusFahrenheitConverter({temp: value, from: fromTempFormat})}°`;
+            if (getUnitFormat() === 'metric') {
+                formattedProperty = `${celsiusFahrenheitConverter({temp: value, to: toTemperature})}°`;
             } else {
                 formattedProperty = `${value}°`;
             };
@@ -48,8 +46,8 @@ export function propertyUnits(property, value) {
             break;
 
         case (property === 'precip' || property === 'snow' || property === 'snowdepth'):
-            if (fromPrecipFormat === 'i') {
-                formattedProperty = millimetersInchesConverter({distance: value, from: fromPrecipFormat});
+            if (getUnitFormat() === 'metric') {
+                formattedProperty = millimetersInchesConverter({distance: value, to: toDistance});
             } else {
                 formattedProperty = `${value} in`;
             };
@@ -57,8 +55,8 @@ export function propertyUnits(property, value) {
             break;
 
         case (property === 'windspeed' || property === 'windgust' || property === 'visibility'):
-            if (fromDirFormat === 'm') {
-                formattedProperty = mphKPHConverter({unit: value, from: fromDirFormat});
+            if (getUnitFormat() === 'metric') {
+                formattedProperty = mphKPHConverter({unit: value, to: toSpeed});
             } else {
                 formattedProperty = `${value} mph`;
             };
@@ -91,6 +89,11 @@ export function propertyUnits(property, value) {
 
         case property === 'solarenergy':
             formattedProperty = `${value} kWh/m²`;
+
+            break;
+
+        case property === 'precipandprob':
+            formattedProperty = `${propertyUnits('precip', value[0])} | ${propertyUnits('precipprob', value[1])}`;
 
             break;
         

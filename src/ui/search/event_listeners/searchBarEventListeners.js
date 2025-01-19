@@ -1,4 +1,4 @@
-import { getCurrentPlusWeather } from "../../../fetchData/get_current_plus_weather";
+import { getCurrentPlusWeather } from "../../../fetch_data/get_current_plus_weather";
 // import { getPreviousWeather } from "../../../fetchData/get_previous_weather";
 // import { getLastMonthYesterdayISO8601 } from "../../../utilities/math/get_last_month_yesterday_iso8601";
 import { setCurrentWeatherData } from "../../../weather_data";

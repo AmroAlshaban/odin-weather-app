@@ -1,7 +1,7 @@
 import { getCurrentWeatherData } from "../../../weather_data.js"; 
 import { createDisplayHourlyData } from "../createHourly.js";
 import { createSection3 } from "../createSection3.js";
-import { CurrentPlusWeather } from "../../../fetchData/current_plus_weather.js";
+import { CurrentPlusWeather } from "../../../fetch_data/current_plus_weather.js";
 
 
 export function addHourlyEventListeners(node) {

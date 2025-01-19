@@ -82,11 +82,11 @@ header button:hover {
 
 header button:active {
     background-color: rgb(82, 82, 82);
-    color: gold;
     border-top: 5px solid yellow;
     border-bottom: 5px solid yellow;
     transition: 0s;
 }
+
 
 @media (max-width: 625px) {
     * {
