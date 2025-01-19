@@ -1,5 +1,5 @@
 .display_hourly_data > div,
-.display_hourly_data > details {
+.display_hourly_data details {
     padding: 10px;
 
     font-family: sans-serif;
@@ -9,12 +9,12 @@
     border-bottom: 1px solid rgb(220, 220, 220);
 }
 
-.display_hourly_data > details {
+.display_hourly_data details {
     display: block;
     cursor: pointer;
 }
  
-.display_hourly_data > details > summary {
+.display_hourly_data details > summary {
     height: 50px;
     list-style: none;
     display: flex;
@@ -24,18 +24,18 @@
     gap: 10px;
 }
 
-.display_hourly_data > details > summary::marker,
-.display_hourly_data > details > summary::-webkit-details-marker {
+.display_hourly_data details > summary::marker,
+.display_hourly_data details > summary::-webkit-details-marker {
     display: none;
 }
 
-.display_hourly_data > details > summary > * {
+.display_hourly_data details > summary > * {
     /* border: 1px solid red; */
     display: flex;
     flex-direction: row;
 }
 
-.display_hourly_data > details > summary > .static {
+.display_hourly_data details > summary > .static {
     aspect-ratio: 1 / 1;
     height: 50px;
     width: auto;
@@ -52,26 +52,26 @@
 /* ----------------------------- */
 /* ----------------------------- */
 
-.display_hourly_data > details > summary > .time > p {
+.display_hourly_data details > summary > .time > p {
     color: rgb(99, 99, 99);
-    font-size: 16px;
+    font-size: 14px;
 }
 
-.display_hourly_data > details > summary > .temperature > p {
+.display_hourly_data details > summary > .temperature > p {
     padding-bottom: 2px;
     color: black;
-    font-size: 24px;
+    font-size: 18px;
     font-weight: 1000;
 }
 
-.display_hourly_data > details > summary > .temperature-icon {
+.display_hourly_data details > summary > .temperature-icon {
     background-image: url("../../images/clear-night.svg");
     background-repeat: no-repeat;
     background-size: 50%;
     background-position: center;
 }
 
-.display_hourly_data > details > summary > .temperature-description {
+.display_hourly_data details > summary > .temperature-description {
     flex: 4;
 
     display: flex;
@@ -80,29 +80,29 @@
     color: rgb(75, 75, 75);
 }
 
-.display_hourly_data > details > summary > .temperature-description > p {
+.display_hourly_data details > summary > .temperature-description > p {
     font-size: 16px;
 }
 
-.display_hourly_data > details > summary > .rain-icon {
+.display_hourly_data details > summary > .rain-icon {
     background-image: url("../../images/water.png");
     background-repeat: no-repeat;
     background-size: 50%;
     background-position: center;
 }
 
-.display_hourly_data > details > summary > .rain-percentage {
+.display_hourly_data details > summary > .rain-percentage {
     font-size: 16px;
 }
 
-.display_hourly_data > details > summary > .wind-icon {
+.display_hourly_data details > summary > .wind-icon {
     background-image: url("../../images/wind-speed.png");
     background-repeat: no-repeat;
     background-size: 50%;
     background-position: center;
 }
 
-.display_hourly_data > details > summary > .wind-speed {
+.display_hourly_data details > summary > .wind-speed {
     flex: 1;
 
     display: flex;
@@ -110,7 +110,7 @@
     align-items: center;
 }
 
-.display_hourly_data > details > summary > .details-arrow {
+.display_hourly_data details > summary > .details-arrow {
     background-image: url("../../images/down-arrow.png");
     background-repeat: no-repeat;
     background-size: 75%;
@@ -130,12 +130,12 @@
 /* ----------------------------- */
 /* ----------------------------- */
 
-.display_hourly_data > details > h4 {
+.display_hourly_data details > h4 {
     margin: 5px;
     display: none;
 }
 
-.display_hourly_data > details > .details-grid {
+.display_hourly_data details > .details-grid {
     margin: 5px;
     margin-top: 10px;
     border: 1px solid gray;
@@ -143,7 +143,7 @@
     box-shadow: -5px 5px 5px rgba(0, 0, 0, 0.3);
 }
 
-.display_hourly_data > details > .details-grid ul {
+.display_hourly_data details > .details-grid ul {
     min-height: 250px;
     padding: 10px;
     list-style: none;
@@ -153,7 +153,7 @@
     row-gap: 5px;
 }
 
-.display_hourly_data > details > .details-grid li {
+.display_hourly_data details > .details-grid li {
     padding-top: 2%;
     padding-bottom: 5%;
     display: flex;
@@ -164,113 +164,113 @@
     border-bottom: 1px solid rgb(220, 220, 220);
 }
 
-.display_hourly_data > details > .details-grid li:nth-last-child(-n+3) {
+.display_hourly_data details > .details-grid li:nth-last-child(-n+3) {
     border-bottom: 1px solid transparent;
 }
 
-.display_hourly_data > details > .details-grid li > .info-icon {
+.display_hourly_data details > .details-grid li > .info-icon {
     aspect-ratio: 1 / 1;
     height: 100%;
     width: auto;
 }
 
-.display_hourly_data > details > .details-grid li > .info-descriptor {
+.display_hourly_data details > .details-grid li > .info-descriptor {
     flex: 2 1 auto;
 }
 
-.display_hourly_data > details > .details-grid li > .info-descriptor p {
+.display_hourly_data details > .details-grid li > .info-descriptor p {
     white-space: normal;
     word-wrap: break-word;
     overflow-wrap: break-word;
 }
 
-.display_hourly_data > details > .details-grid li > .info-descriptor > p:nth-child(1) {
+.display_hourly_data details > .details-grid li > .info-descriptor > p:nth-child(1) {
     font-size: 14px;
 }
 
-.display_hourly_data > details > .details-grid li > .info-descriptor > p:nth-child(2) {
+.display_hourly_data details > .details-grid li > .info-descriptor > p:nth-child(2) {
     font-size: 16px;
     font-weight: bold;
 }
 
-.display_hourly_data > details > .details-grid .feels-like > .info-icon {
+.display_hourly_data details > .details-grid .feels-like > .info-icon {
     background-image: url("../../images/temperature.png");
     background-repeat: no-repeat;
     background-size: 50%;
     background-position: top;
 }
 
-.display_hourly_data > details > .details-grid .wind > .info-icon {
+.display_hourly_data details > .details-grid .wind > .info-icon {
     background-image: url("../../images/wind-speed.png");
     background-repeat: no-repeat;
     background-size: 50%;
     background-position: top;
 }
 
-.display_hourly_data > details > .details-grid .windgust > .info-icon {
+.display_hourly_data details > .details-grid .windgust > .info-icon {
     background-image: url("../../images/wind-gust.png");
     background-repeat: no-repeat;
     background-size: 50%;
     background-position: top;
 }
 
-.display_hourly_data > details > .details-grid .humidity > .info-icon {
+.display_hourly_data details > .details-grid .humidity > .info-icon {
     background-image: url("../../images/humidity.png");
     background-repeat: no-repeat;
     background-size: 50%;
     background-position: top;
 }
 
-.display_hourly_data > details > .details-grid .uvindex > .info-icon {
+.display_hourly_data details > .details-grid .uvindex > .info-icon {
     background-image: url("../../images/uv-index.png");
     background-repeat: no-repeat;
     background-size: 50%;
     background-position: top;
 }
 
-.display_hourly_data > details > .details-grid .rainamount > .info-icon {
+.display_hourly_data details > .details-grid .rainamount > .info-icon {
     background-image: url("../../images/water.png");
     background-repeat: no-repeat;
     background-size: 50%;
     background-position: top;
 }
 
-.display_hourly_data > details > .details-grid .moonphase > .info-icon {
+.display_hourly_data details > .details-grid .moonphase > .info-icon {
     background-image: url("../../images/moonphase.png");
     background-repeat: no-repeat;
     background-size: 50%;
     background-position: top;
 }
 
-.display_hourly_data > details > .details-grid .pressure > .info-icon {
+.display_hourly_data details > .details-grid .pressure > .info-icon {
     background-image: url("../../images/pressure.png");
     background-repeat: no-repeat;
     background-size: 50%;
     background-position: top;
 }
 
-.display_hourly_data > details > .details-grid .cloudcover > .info-icon {
+.display_hourly_data details > .details-grid .cloudcover > .info-icon {
     background-image: url("../../images/cloud-cover.png");
     background-repeat: no-repeat;
     background-size: 50%;
     background-position: top;
 }
 
-.display_hourly_data > details > .details-grid .dew > .info-icon {
+.display_hourly_data details > .details-grid .dew > .info-icon {
     background-image: url("../../images/dew.png");
     background-repeat: no-repeat;
     background-size: 50%;
     background-position: top;
 }
 
-.display_hourly_data > details > .details-grid .snow > .info-icon {
+.display_hourly_data details > .details-grid .snow > .info-icon {
     background-image: url("../../images/snow.png");
     background-repeat: no-repeat;
     background-size: 50%;
     background-position: top;
 }
 
-.display_hourly_data > details > .details-grid .solarradiation > .info-icon {
+.display_hourly_data details > .details-grid .solarradiation > .info-icon {
     background-image: url("../../images/solar-radiation.png");
     background-repeat: no-repeat;
     background-size: 50%;
@@ -283,67 +283,78 @@
 /* ----------------------------- */
 /* END Styles of Individual Details-Grid Elements */
 
-.display_hourly_data > .title-card {
+.display_hourly_data .title-card {
     padding-bottom: 20px;
 }
 
 @media (max-width: 850px) {
-    .display_hourly_data > details > summary > .wind-speed,
-    .display_hourly_data > details > summary > .rain-percentage {
+    .display_hourly_data details > summary > .wind-speed,
+    .display_hourly_data details > summary > .rain-percentage {
         display: none;
     }
 }
 
 @media (max-width: 750px) {
-    .display_hourly_data > details > summary > .wind-icon,
-    .display_hourly_data > details > summary > .rain-icon {
+    .display_hourly_data details > summary > .wind-icon,
+    .display_hourly_data details > summary > .rain-icon {
         display: none;
     }
 
-    .display_hourly_data > details > .details-grid li > .info-descriptor > p {
+    .display_hourly_data details > .details-grid li > .info-descriptor > p {
         font-size: 14px !important;
     }
 }
 
 @media (max-width: 625px) {
 
-    .display_hourly_data > details > summary > .wind-icon,
-    .display_hourly_data > details > summary > .rain-icon,
-    .display_hourly_data > details > h4 {
+    .display_hourly_data details > summary > .wind-icon,
+    .display_hourly_data details > summary > .rain-icon,
+    .display_hourly_data details > h4 {
         display: revert;
     }
 
-    .display_hourly_data > details > summary > .wind-speed,
-    .display_hourly_data > details > summary > .rain-percentage {
+    .display_hourly_data details > summary > .wind-speed,
+    .display_hourly_data details > summary > .rain-percentage {
         display: flex;
     }
 
-    .display_hourly_data > details > .details-grid ul {
+    .display_hourly_data details > .details-grid ul {
         grid-template-columns: 50% 50%;
         grid-template-rows: auto;
     }
 
-    .display_hourly_data > details > .details-grid li:nth-last-child(-n+3) {
+    .display_hourly_data details > .details-grid li:nth-last-child(-n+3) {
         border-bottom: 1px solid rgb(220, 220, 220);
     }
 
-    .display_hourly_data > details > .details-grid li:nth-last-child(-n+2) {
+    .display_hourly_data details > .details-grid li:nth-last-child(-n+2) {
         border-bottom: 1px solid transparent;
     }
 
-    .display_hourly_data > details > .details-grid li > .info-descriptor > p {
+    .display_hourly_data details > .details-grid li > .info-descriptor > p {
         font-size: 12px !important;
     }
 
-    .display_hourly_data > details > summary > .temperature-icon,
-    .display_hourly_data > details > summary > .temperature-description {
+    .display_hourly_data details > summary > .temperature-icon,
+    .display_hourly_data details > summary > .temperature-description {
         display: none;
     }
 }
 
 @media (max-width: 500px) {
-    .display_hourly_data > details > summary > .wind-speed {
+    .display_hourly_data details > summary > .temperature > p {
+        color: black;
+        font-size: 18px;
+        font-weight: 700;
+    }
+    
+    .display_hourly_data details > summary > .wind-icon,
+    .display_hourly_data details > summary > .wind-speed {
         display: none;
+    }
+
+    .display_hourly_data details > summary > .details-arrow {
+        margin-left: auto;
     }
 }
 
@@ -352,35 +363,35 @@
         padding: 5px;
     }
     
-    .display_hourly_data > details > summary > .wind-icon,
-    .display_hourly_data > details > summary > .rain-icon,
-    .display_hourly_data > details > summary > .rain-percentage {
+    .display_hourly_data details > summary > .wind-icon,
+    .display_hourly_data details > summary > .rain-icon,
+    .display_hourly_data details > summary > .rain-percentage {
         display: none;
     }
 
-    .display_hourly_data > details > summary {
+    .display_hourly_data details > summary {
         
         justify-content: flex-start;
     }
     
-    .display_hourly_data > details > summary > .details-arrow {
+    .display_hourly_data details > summary > .details-arrow {
         margin-left: auto;
     }
 
-    .display_hourly_data > details > .details-grid ul {
+    .display_hourly_data details > .details-grid ul {
         grid-template-columns: 1fr;
         grid-template-rows: auto;
     }
 
-    .display_hourly_data > details > .details-grid li:nth-last-child(-n+2) {
+    .display_hourly_data details > .details-grid li:nth-last-child(-n+2) {
         border-bottom: 1px solid rgb(220, 220, 220);
     }
 
-    .display_hourly_data > details > .details-grid li:nth-last-child(-n+1) {
+    .display_hourly_data details > .details-grid li:nth-last-child(-n+1) {
         border-bottom: 1px solid transparent;
     }
 
-    .display_hourly_data > details > .details-grid li > .info-descriptor > p {
+    .display_hourly_data details > .details-grid li > .info-descriptor > p {
         font-size: 9px !important;
     }
 }

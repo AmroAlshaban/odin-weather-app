@@ -4,41 +4,6 @@ import { addSummaryEventListeners } from "./event_listeners/summaryEventListener
 
 
 export function createDisplayHourlyData(weatherData) {
-    const summaryComponentClassNames = [
-        'time', 'temperature', 'temperature-icon', 'temperature-description',
-        'rain-icon', 'rain-percentage', 'wind-icon', 'wind-speed', 'details-arrow',
-    ];
-
-    const summaryComponentStatic = [
-        true, true, true, false, true, true, true, false, true,
-    ];
-
-    const summaryComponentIcon = [
-        false, false, true, false, true, false, true, false, true,
-    ];
-
-    const summaryComponentProperties = [
-        'datetime', 'temp', null, 'conditions',
-        null, 'precipprob', null, 'windspeeddir', null
-    ];
-
-    const detailsComponentClassNames = [
-        'feels-like', 'wind', 'windgust', 'humidity',
-        'uvindex', 'rainamount', 'moonphase', 'pressure',
-        'cloudcover', 'dew', 'snow', 'solarradiation',
-    ];
-
-    const detailsComponentTitles = [
-        'Feels Like', 'Wind Speed', 'Wind Gust', 'Humidity',
-        'UV Index', 'Rain', 'Severe Risk', 'Pressure',
-        'Cloud Cover', 'Dew', 'Snow', 'Solar Radiation',
-    ];
-
-    const detailsComponentProperties = [
-        'feelslike', 'windspeeddir', 'windgustdir', 'humidity',
-        'uvindex', 'precipandprob', 'severerisk', 'pressure',
-        'cloudcover', 'dew', 'snow', 'solarradiation',
-    ];
 
     const titleCard = createTitleCard({
         displayType: 'hourly',
@@ -47,76 +12,8 @@ export function createDisplayHourlyData(weatherData) {
 
     const dayDate = createDayDate(propertyUnits('datetime', weatherData.get('datetime')));
 
-    const allSummaryComponents = Array.from({ length: 24 }, (_, index) => {
-        const summaryComponents = Array.from({ length: 9 }, (_, subIndex) => {
-            const summaryComponent = createDataSummaryComponent({
-                className: summaryComponentClassNames[subIndex],
-                isStatic: summaryComponentStatic[subIndex],
-                isIcon: summaryComponentIcon[subIndex],
-                iconName: summaryComponentClassNames[subIndex] === 'temperature-icon' 
-                        ? weatherData.hour(index).get('icon')
-                        : null,
-                text: propertyUnits(
-                    summaryComponentProperties[subIndex], 
-                    weatherData.hour(index).get(summaryComponentProperties[subIndex])
-                ),
-            });
-
-            return summaryComponent;
-        });
-        // throw new Error("Ehhhh!")
-        return summaryComponents;
-    });
-
-    const allSummary = Array.from({ length: 24 }, (_, index) => {
-        const summary = createDataSummary(allSummaryComponents[index]);
-
-        addSummaryEventListeners(summary);
-        return summary;
-    });
-
-    const allH4 = Array.from({ length: 24 }, (_, index) => {
-        const h4 = createH4Element(weatherData.hour(index).get('conditions'));
-
-        return h4;
-    });
-
-    const allLiComponents = Array.from({ length: 24 }, (_, index) => {
-        const liComponents = Array.from({ length: detailsComponentClassNames.length }, (_, subIndex) => {
-            const liComponent = createDetailsGridListElement({
-                liClassName: detailsComponentClassNames[subIndex],
-                metricTitle: detailsComponentTitles[subIndex],
-                metricValue: propertyUnits(detailsComponentProperties[subIndex], weatherData.hour(index).get(detailsComponentProperties[subIndex])),
-            });
-    
-            return liComponent;
-        });
-
-        return liComponents;
-    });
-
-    const allListContainers = Array.from({ length: 24 }, (_, index) => {
-        const listContainer = createDetailsGridListContainer(allLiComponents[index]);
-
-        return listContainer;
-    });
-
-    const allDetails = Array.from({ length: 24 }, (_, index) => {
-        const details = createDetailsGrid(allListContainers[index]);
-
-        return details;
-    });
-
-    const allData = Array.from({ length: 24 }, (_, index) => {
-        const data = createData({
-            summaryElement: allSummary[index], 
-            h4Element: allH4[index], 
-            detailsGrid: allDetails[index],
-            eventListeners: NaN,
-        });
-
-        // addDetailsEventListeners(data);
-        return data;
+    const allData = createAllData({
+        data: weatherData,
     });
 
     const displayHourlyData = createNewElement({
@@ -128,12 +25,134 @@ export function createDisplayHourlyData(weatherData) {
 };
 
 
+export function createAllData({
+    data,
+    numberOfIterations=24,
+}) {
+    
+    const summaryComponentClassNames = [
+        'time', 'temperature', 'temperature-icon', 'temperature-description',
+        'rain-icon', 'rain-percentage', 'wind-icon', 'wind-speed', 'details-arrow',
+    ];
+    
+    const summaryComponentStatic = [
+        true, true, true, false, true, true, true, false, true,
+    ];
+    
+    const summaryComponentIcon = [
+        false, false, true, false, true, false, true, false, true,
+    ];
+    
+    const summaryComponentProperties = [
+        'datetime', 'temp', null, 'conditions',
+        null, 'precipprob', null, 'windspeeddir', null
+    ];
+    
+    const detailsComponentClassNames = [
+        'feels-like', 'wind', 'windgust', 'humidity',
+        'uvindex', 'rainamount', 'moonphase', 'pressure',
+        'cloudcover', 'dew', 'snow', 'solarradiation',
+    ];
+    
+    const detailsComponentTitles = [
+        'Feels Like', 'Wind Speed', 'Wind Gust', 'Humidity',
+        'UV Index', 'Rain', 'Severe Risk', 'Pressure',
+        'Cloud Cover', 'Dew', 'Snow', 'Solar Radiation',
+    ];
+    
+    const detailsComponentProperties = [
+        'feelslike', 'windspeeddir', 'windgustdir', 'humidity',
+        'uvindex', 'precipandprob', 'severerisk', 'pressure',
+        'cloudcover', 'dew', 'snow', 'solarradiation',
+    ];
+
+    const allSummaryComponents = Array.from({ length: numberOfIterations }, (_, index) => {
+        const summaryComponents = Array.from({ length: summaryComponentClassNames.length }, (_, subIndex) => {
+            // console.log(summaryComponentProperties[subIndex]);
+
+            const summaryComponent = createDataSummaryComponent({
+                className: summaryComponentClassNames[subIndex],
+                isStatic: summaryComponentStatic[subIndex],
+                isIcon: summaryComponentIcon[subIndex],
+                iconName: summaryComponentClassNames[subIndex] === 'temperature-icon' 
+                        ? data.hour(index).get('icon')
+                        : null,
+                text: propertyUnits(
+                    summaryComponentProperties[subIndex], 
+                    data.hour(index).get(summaryComponentProperties[subIndex])
+                ),
+            });
+
+            return summaryComponent;
+        });
+
+        return summaryComponents;
+    });
+
+    const allSummary = Array.from({ length: numberOfIterations }, (_, index) => {
+        const summary = createDataSummary(allSummaryComponents[index]);
+
+        addSummaryEventListeners(summary);
+        return summary;
+    });
+
+    const allH4 = Array.from({ length: numberOfIterations }, (_, index) => {
+        const h4 = createH4Element(data.hour(index).get('conditions'));
+
+        return h4;
+    });
+
+    const allLiComponents = Array.from({ length: numberOfIterations }, (_, index) => {
+        const liComponents = Array.from({ length: detailsComponentClassNames.length }, (_, subIndex) => {
+            const liComponent = createDetailsGridListElement({
+                liClassName: detailsComponentClassNames[subIndex],
+                metricTitle: detailsComponentTitles[subIndex],
+                metricValue: propertyUnits(detailsComponentProperties[subIndex], data.hour(index).get(detailsComponentProperties[subIndex])),
+            });
+    
+            return liComponent;
+        });
+
+        return liComponents;
+    });
+
+    const allListContainers = Array.from({ length: numberOfIterations }, (_, index) => {
+        const listContainer = createDetailsGridListContainer(allLiComponents[index]);
+
+        return listContainer;
+    });
+
+    const allDetails = Array.from({ length: numberOfIterations }, (_, index) => {
+        const details = createDetailsGrid(allListContainers[index]);
+
+        return details;
+    });
+
+    const allData = Array.from({ length: numberOfIterations }, (_, index) => {
+        const data = createData({
+            summaryElement: allSummary[index], 
+            h4Element: allH4[index], 
+            detailsGrid: allDetails[index],
+            eventListeners: NaN,
+        });
+
+        return data;
+    });
+
+    return allData;
+};
+
+
 export function createTitleCard({displayType, location}) {
-    const displayTypeToTitle = {'today': "Today's", 'hourly': 'Hourly', 'past': 'Past', 'forecast': '15-Day Forecast'};
+    const displayTypeToTitle = {'today': "Today's", 'hourly': 'Hourly', 'past': 'Past', 'forecast': '14-Day Forecast'};
 
     const h1Element = createNewElement({
         nameTag: 'h1',
         textContent: `${displayTypeToTitle[displayType]} Weather`,
+    });
+
+    const brElement = createNewElement({
+        nameTag: 'br',
     });
 
     const pElement = createNewElement({
@@ -145,7 +164,7 @@ export function createTitleCard({displayType, location}) {
         className: 'title-card',
     });
 
-    titleCard.append(h1Element, pElement);
+    titleCard.append(h1Element, brElement, pElement);
     return titleCard;
 };
 

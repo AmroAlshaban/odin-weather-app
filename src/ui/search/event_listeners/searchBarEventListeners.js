@@ -16,9 +16,40 @@ export function addSearchBarEventListeners(node) {
 
             try {
                 currentData = await getCurrentPlusWeather(query);
-    
-                setCurrentWeatherData(currentData);
-                document.querySelector("#hourly").dispatchEvent(new Event("click"));
+                
+                if (currentData.error) {
+                    let j = 5;
+
+                    node.disabled = true;
+                    node.previousSibling.style.pointerEvents = "none";
+                    node.previousSibling.style.opacity = "0.5";
+                    node.value = `No such address (${j}s).`;
+                    for (let i = 1; i <= 5; i++) {
+                        setTimeout(() => {
+                            node.value = `No such address (${j - i}s).`;
+                            
+                            if (i === 5) {
+                                node.value = '';
+                                node.disabled = false;
+                                node.previousSibling.style.pointerEvents = "auto";
+                                node.previousSibling.style.opacity = "1";
+                            }
+                        }, i * 1000);
+                    };
+
+                } else {
+                    node.disabled = true;
+                    node.previousSibling.style.pointerEvents = "none";
+                    node.previousSibling.style.opacity = "0.5";
+                    setTimeout(() => {
+                        node.disabled = false;
+                        node.previousSibling.style.pointerEvents = "auto";
+                        node.previousSibling.style.opacity = "1";
+                    }, 1000);
+                    
+                    setCurrentWeatherData(currentData);
+                    document.querySelector("#hourly").dispatchEvent(new Event("click"));
+                };
             } catch (error) {
                 console.error("Error fetching weather data:", error);
             };           
@@ -32,7 +63,7 @@ export function addSearchImageEventListeners(node) {
 
     node.addEventListener("click", () => {
         const inputField = document.querySelector("#search_bar_write");
-        inputField.dispatchEvent(new Event("keydown"));
+        inputField.dispatchEvent(new KeyboardEvent("keydown", { key: 'Enter' }));
     });
 
 };

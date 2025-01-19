@@ -27,6 +27,8 @@ export const GetWeatherDataMixin = {
             return this._includeWindDir('windgust');
         } else if (key === 'precipandprob') {
             return this._includePrecipProb('precip');
+        } else if (key === 'datetimeshort') {
+            return this._getData()['datetime'];
         } else if (properties.includes(key)) {
             return this._getData()[key];
         } else {

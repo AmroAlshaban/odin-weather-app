@@ -9,22 +9,22 @@ export function addUnitSystemEventListeners(node) {
 
         if (getUnitFormat() === 'us') {
             Object.assign(node.querySelector("sup").style, {
-                fontSize: '14px',
+                fontSize: 'calc(14px / var(--scale-factor-font))',
                 fontWeight: '1000',
             });
 
             Object.assign(node.querySelector("sub").style, {
-                fontSize: '10px',
+                fontSize: 'calc(10px / var(--scale-factor-font))',
                 fontWeight: '500',
             });
         } else {
             Object.assign(node.querySelector("sup").style, {
-                fontSize: '10px',
+                fontSize: 'calc(10px / var(--scale-factor-font))',
                 fontWeight: '500',
             });
 
             Object.assign(node.querySelector("sub").style, {
-                fontSize: '14px',
+                fontSize: 'calc(14px / var(--scale-factor-font))',
                 fontWeight: '1000',
             });
         }

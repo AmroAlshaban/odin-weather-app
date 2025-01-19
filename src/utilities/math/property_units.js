@@ -1,6 +1,7 @@
 import { convertMilitaryTimeToAmPm } from "./military_to_am_pm.js";
 import { celsiusFahrenheitConverter } from "./celsius_fahrenheit";
 import { iso8601ToLongDate } from "./iso8601_to_long_date";
+import { iso8601ToShortDate } from "./iso8601_to_short_date.js";
 import { millimetersInchesConverter } from "./millimeters_inches_converter";
 import { mphKPHConverter } from "./mph_kph_converter.js";
 import { windDirCardinalDirConverter } from "./wind_angle_cardinal.js";
@@ -31,6 +32,16 @@ export function propertyUnits(property, value) {
             };
 
             break;
+
+        case property === 'datetimeshort':
+            if (value.split('-').length > 1) {
+                formattedProperty = iso8601ToShortDate(value);
+            } else {
+                throw new Error("Invalid value.");
+            };
+
+            break;
+        
         case (property === 'temp' || property === 'feelslike' || property === 'dew'):
             if (getUnitFormat() === 'metric') {
                 formattedProperty = `${celsiusFahrenheitConverter({temp: value, to: toTemperature})}°`;
@@ -96,7 +107,7 @@ export function propertyUnits(property, value) {
             formattedProperty = `${propertyUnits('precip', value[0])} | ${propertyUnits('precipprob', value[1])}`;
 
             break;
-        
+
         default:
             formattedProperty = value;
 
