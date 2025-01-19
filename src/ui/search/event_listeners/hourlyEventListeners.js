@@ -2,6 +2,7 @@ import { getCurrentWeatherData } from "../../../weather_data.js";
 import { createDisplayHourlyData } from "../createHourly.js";
 import { createSection3 } from "../createSection3.js";
 import { CurrentPlusWeather } from "../../../fetch_data/current_plus_weather.js";
+import { setCurrentSearchNavigation } from "../../../open_search_navigation.js";
 
 
 export function addHourlyEventListeners(node) {
@@ -17,11 +18,13 @@ export function addHourlyEventListeners(node) {
             const mainNode = document.querySelector("main");
             mainNode.appendChild(section3);
         } else {
-            const section3 = createSection3();
+            const section3 = createSection3(displayHourly);
     
             const mainNode = document.querySelector("main");
             mainNode.appendChild(section3);
         };
+
+        setCurrentSearchNavigation('hourly');
     });
 
 };

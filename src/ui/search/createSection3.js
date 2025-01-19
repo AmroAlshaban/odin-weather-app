@@ -1,10 +1,15 @@
 import { createNewElement } from "../../utilities/helpers/create_new_element";
+import { getPreSearchNode } from "../../home_node";
 
 
 export function createSection3(display=null) {
-    const checkSection3 = document.querySelector(".section3");
-    if (checkSection3) {
-        checkSection3.parentNode.removeChild(checkSection3);
+    const section2 = document.querySelector(".section2");
+    if (section2) {
+        let nextSibling = section2.nextElementSibling;
+        while (nextSibling) {
+            nextSibling.remove();
+            nextSibling = section2.nextElementSibling;
+        };
     };
 
     const section3 = createNewElement({
@@ -12,7 +17,8 @@ export function createSection3(display=null) {
     });
 
     if (display === null) {
-        return section3;
+        return getPreSearchNode();
+        // return section3;
     };
 
     section3.appendChild(display);

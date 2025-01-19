@@ -8,6 +8,16 @@ footer {
     align-items: center;
 }
 
-footer > .website-footer h2 {
-    color: white;
+footer > .website-footer h2 > a {
+    color: lightblue;
+    text-decoration: underline;
+}
+
+footer > .website-footer h2 > a:visited {
+    color: gold;
+}
+
+footer ::selection {
+    color: pink;
+    background-color: blue;
 }

@@ -1,6 +1,7 @@
 import { createSection1 } from "../createSection1";
 import { createSection2 } from "../createSection2";
 import { setCurrentPage } from "../../../current_page";
+import { getCurrentSearchNavigation } from "../../../open_search_navigation";
 
 
 export function addSearchButtonEventListeners(node) {
@@ -15,7 +16,7 @@ export function addSearchButtonEventListeners(node) {
         const section2 = createSection2();
 
         main.append(section1, section2);
-        document.querySelector("#hourly").dispatchEvent(new Event("click"));
+        document.querySelector(`#${getCurrentSearchNavigation()}`).dispatchEvent(new Event("click"));
     });
 
 };

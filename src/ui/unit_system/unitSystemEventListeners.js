@@ -1,5 +1,6 @@
 import { getUnitFormat, setUnitFormat } from "../../unit_formats/us_metric";
 import { getCurrentPage } from "../../current_page";
+import { getCurrentSearchNavigation } from "../../open_search_navigation";
 
 
 export function addUnitSystemEventListeners(node) {
@@ -30,11 +31,7 @@ export function addUnitSystemEventListeners(node) {
         }
 
         if (getCurrentPage() === 'search') {
-            document.querySelector("#hourly").dispatchEvent(new Event("click"));
-        } else if (getCurrentPage() === 'home') {
-            // do stuff
-        } else if (getCurrentPage() === 'about') {
-            // do stuff
+            document.querySelector(`#${getCurrentSearchNavigation()}`).dispatchEvent(new Event("click"));
         };
     });
 

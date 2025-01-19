@@ -48,7 +48,7 @@ export function addSearchBarEventListeners(node) {
                     }, 1000);
                     
                     setCurrentWeatherData(currentData);
-                    document.querySelector("#hourly").dispatchEvent(new Event("click"));
+                    document.querySelector("#today").dispatchEvent(new Event("click"));
                 };
             } catch (error) {
                 console.error("Error fetching weather data:", error);

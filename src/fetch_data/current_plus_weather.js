@@ -1,8 +1,3 @@
-// import { DayWeather } from "./day_weather";
-// import { HourlyWeather } from "./hourly_weather";
-// import { GetWeatherDataMixin } from "./mixins.js";
-
-
 export const GetWeatherDataMixin = {
     get(key) {
         if (key === null) {

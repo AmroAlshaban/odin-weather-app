@@ -1,5 +1,4 @@
 import { 
-    createDisplayHourlyData,
     createAllData,
     createTitleCard,
     createDayDate,
