@@ -1,12 +1,12 @@
 import { createSection1 } from "../createSection1";
 import { createSection2 } from "../createSection2";
-import { changeCurrentPage } from "../../current_page";
+import { setCurrentPage } from "../../../current_page";
 
 
 export function addSearchButtonEventListeners(node) {
 
     node.addEventListener("click", () => {
-        changeCurrentPage('search');
+        setCurrentPage('search');
 
         const main = document.querySelector("main");
         main.replaceChildren();

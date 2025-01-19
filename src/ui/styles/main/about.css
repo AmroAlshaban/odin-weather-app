@@ -1,0 +1,127 @@
+* {
+    --base-font-size: 16px;
+    --font-size-scale-factor: 1.2;
+}
+
+
+.about-container {
+    margin: 50px;
+    padding: 50px;
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 25px;
+}
+
+.about-container * {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.about-container h1 {
+    font-size: calc(var(--base-font-size) * var(--font-size-scale-factor) * 2);
+}
+.about-container h2 {
+    font-size: calc(var(--base-font-size) * var(--font-size-scale-factor) * 1.75);
+}
+.about-container h3 {
+    font-size: calc(var(--base-font-size) * var(--font-size-scale-factor) * 1.5);
+}
+.about-container h4 {
+    font-size: calc(var(--base-font-size) * var(--font-size-scale-factor) * 1.25);
+}
+.about-container h5,
+.about-container h6 {
+    font-size: calc(var(--base-font-size) * var(--font-size-scale-factor));
+}
+
+.about-container details > summary::marker,
+.about-container details > summary::-webkit-details-marker {
+    display: inline-block;
+}
+
+.about-container details > summary {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 10px;
+}
+
+.about-details {
+    display: flex;
+    flex-direction: row;
+    justify-content: stretch;
+    align-items: stretch;
+    gap: 10px;
+}
+
+.about-details .details-appendor {
+    flex: 1;
+    min-width: 10px;
+    max-width: 25px;
+    background-color: gray;
+}
+
+.about-details .about-details-info {
+    flex: 5;
+}
+
+.about-details .about-details-info ul {
+    margin-left: 20px;
+}
+
+.about-container details > .about-intro {
+    display: flex;
+    flex-direction: row;
+    justify-content: stretch;
+    align-items: stretch;
+    gap: 50px;
+
+    height: 300px;
+}
+
+.about-container details > .about-intro > .profile-picture {
+    aspect-ratio: 1 / 1;
+    height: 100%;
+    width: auto;
+
+    background-image: url(https://avatars.githubusercontent.com/u/140441695?v=4);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.about-container details > .about-intro > article {
+    flex: 1;
+}
+
+.about-container section * {
+    font-family: sans-serif;
+}
+
+.about-container section h2 {
+    font-size: 24px;
+    margin-top: 25px;
+}
+
+#about-gif {
+    width: 100%;
+    height: auto;
+}
+
+@media (max-width: 625px) {
+    .about-container {
+        margin: 15px;
+    }
+}
+
+@media (max-width: 500px) {
+    * {
+        --base-font-size: 12px;
+        /* --font-size-scale-factor: 0.8; */
+    }
+
+    .about-details .details-appendor {
+        display: none;
+    }
+}

@@ -1,5 +1,5 @@
 import { getUnitFormat, setUnitFormat } from "../../unit_formats/us_metric";
-import { getCurrentPage } from "../current_page";
+import { getCurrentPage } from "../../current_page";
 
 
 export function addUnitSystemEventListeners(node) {

@@ -81,6 +81,7 @@ export function createDisplayForecastData(weatherData) {
 
     const allSummary = Array.from({ length: 14 }, (_, index) => {
         const summary = createDataSummary(allSummaryComponents[index]);
+        addSummaryEventListeners(summary);
 
         return summary;
     });

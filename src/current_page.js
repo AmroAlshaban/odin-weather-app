@@ -6,6 +6,6 @@ export function getCurrentPage() {
 };
 
 
-export function changeCurrentPage(pageName) {
+export function setCurrentPage(pageName) {
     currentPage = pageName;
 };
