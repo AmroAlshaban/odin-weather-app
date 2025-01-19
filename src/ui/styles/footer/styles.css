@@ -1,3 +1,8 @@
+body {
+    display: flex;
+    flex-direction: column;
+}
+
 footer {
     height: 50px;
     background-color: black;
@@ -6,6 +11,8 @@ footer {
     flex-direction: row;
     justify-content: center;
     align-items: center;
+
+    margin-top: auto;
 }
 
 footer > .website-footer h2 > a {
